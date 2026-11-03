@@ -1,11 +1,11 @@
-# Activity 2: Jenkins CI/CD Pipeline with Terraform Infrastructure Provisioning
+# Internal Assessment 3: Jenkins CI/CD Pipeline with Terraform Infrastructure Provisioning
 
 **Student:** Kartik Saste  
-**Course activity:** Cloud Computing, Activity 2  
+**Course assessment:** Cloud Computing, Internal Assessment 3  
 **Repository:** https://github.com/kartiksaste123/jenkins-terraform-cicd  
 **Stack:** Python 3.12 · Flask · pytest · flake8 · Docker · Jenkins 2.541.3 (LTS, JDK 17) · Terraform 1.9.8 · AWS EC2 (ap-south-1)
 
-For this activity I built a Jenkins CI/CD pipeline that pulls my code from GitHub, lints it, runs unit tests, builds a Docker image and smoke-tests it. The same pipeline then validates and plans my Terraform code, and (only when I tick a parameter) provisions a real AWS EC2 instance that runs the app. I applied it on my AWS account, opened the app on the instance's public IP, and destroyed it again with the pipeline, so everything was done for real and nothing was left running.
+For this assessment I built a Jenkins CI/CD pipeline that pulls my code from GitHub, lints it, runs unit tests, builds a Docker image and smoke-tests it. The same pipeline then validates and plans my Terraform code, and (only when I tick a parameter) provisions a real AWS EC2 instance that runs the app. I applied it on my AWS account, opened the app on the instance's public IP, and destroyed it again with the pipeline, so everything was done for real and nothing was left running.
 
 ---
 

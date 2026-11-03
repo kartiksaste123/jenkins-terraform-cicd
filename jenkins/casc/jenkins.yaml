@@ -1,7 +1,7 @@
 # Jenkins Configuration-as-Code (JCasC) for the jenkins-terraform-cicd assignment.
 # Secrets are read from files mounted at /run/secrets (never stored in this repo).
 jenkins:
-  systemMessage: "Kartik Saste - Activity 2: Jenkins CI/CD + Terraform (configured by JCasC)"
+  systemMessage: "Kartik Saste - Internal Assessment 3: Jenkins CI/CD + Terraform (configured by JCasC)"
   numExecutors: 2
   mode: NORMAL
   securityRealm:

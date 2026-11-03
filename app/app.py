@@ -1,5 +1,5 @@
 """Student Task Tracker - a small Flask REST API used for the
-Jenkins CI/CD + Terraform assignment (Activity 2) by Kartik Saste."""
+Jenkins CI/CD + Terraform assignment (Internal Assessment 3) by Kartik Saste."""
 import os
 import socket
 from datetime import datetime, timezone
