@@ -1,0 +1,70 @@
+# Jenkins Configuration-as-Code (JCasC) for the jenkins-terraform-cicd assignment.
+# Secrets are read from files mounted at /run/secrets (never stored in this repo).
+jenkins:
+  systemMessage: "Kartik Saste - Activity 2: Jenkins CI/CD + Terraform (configured by JCasC)"
+  numExecutors: 2
+  mode: NORMAL
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "kartik"
+          name: "Kartik Saste"
+          password: "${jenkins_admin_password}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+
+unclassified:
+  location:
+    url: "http://localhost:8081/"
+    adminAddress: "kartiksaste4@gmail.com"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "aws-terraform-ci"
+              description: "AWS IAM user terraform-ci (EC2 only) access key for Terraform"
+              username: "${aws_access_key_id}"
+              password: "${aws_secret_access_key}"
+
+jobs:
+  - script: >
+      pipelineJob('jenkins-terraform-cicd') {
+        displayName('jenkins-terraform-cicd')
+        description('CI/CD pipeline: GitHub checkout, flake8, pytest, Docker build and smoke test, Terraform init/fmt/validate/plan and gated apply/destroy of an AWS EC2 instance.')
+        properties {
+          githubProjectUrl('https://github.com/kartiksaste123/jenkins-terraform-cicd/')
+          pipelineTriggers {
+            triggers {
+              pollSCM {
+                scmpoll_spec('H/5 * * * *')
+              }
+            }
+          }
+        }
+        parameters {
+          booleanParam('APPLY', false, 'Run terraform apply to create the EC2 instance on AWS (ap-south-1).')
+          booleanParam('DESTROY', false, 'Run terraform destroy to remove all infrastructure created by this pipeline.')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/kartiksaste123/jenkins-terraform-cicd.git')
+                }
+                branches('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+            lightweight(true)
+          }
+        }
+      }
