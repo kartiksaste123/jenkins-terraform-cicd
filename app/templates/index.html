@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Student Task Tracker | Jenkins + Terraform</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; background: linear-gradient(135deg,#1e3c72,#2a5298); margin:0; color:#222; }
+    .card { max-width: 820px; margin: 40px auto; background:#fff; border-radius:14px; padding:30px 36px; box-shadow:0 10px 30px rgba(0,0,0,.25); }
+    h1 { margin-top:0; color:#1e3c72; }
+    .badges span { display:inline-block; background:#eef3ff; color:#1e3c72; border-radius:20px; padding:5px 12px; margin:3px; font-size:14px; }
+    table { width:100%; border-collapse:collapse; margin-top:18px; }
+    th, td { text-align:left; padding:10px; border-bottom:1px solid #e3e7ef; }
+    th { background:#f5f7fb; }
+    .done { color:#1a7f37; font-weight:600; } .todo { color:#b35900; font-weight:600; }
+    .footer { margin-top:20px; font-size:13px; color:#666; }
+    code { background:#f3f3f3; padding:2px 6px; border-radius:4px; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>Student Task Tracker</h1>
+  <p>Activity 2: Jenkins CI/CD Pipeline with Terraform Infrastructure Provisioning, by <b>Kartik Saste</b></p>
+  <div class="badges">
+    <span>Version: {{ version }}</span>
+    <span>Build: {{ build }}</span>
+    <span class="host">Host: <b class="value">{{ host }}</b></span>
+  </div>
+  <table>
+    <tr><th>#</th><th>Task</th><th>Status</th></tr>
+    {% for t in tasks %}
+    <tr><td>{{ t.id }}</td><td>{{ t.title }}</td>
+      <td class="{{ 'done' if t.done else 'todo' }}">{{ 'Done' if t.done else 'Pending' }}</td></tr>
+    {% endfor %}
+  </table>
+  <p class="footer">API: <code>/health</code> <code>/api/info</code> <code>/api/tasks</code> &middot;
+    Pipeline: GitHub &rarr; Jenkins (lint, test, Docker build) &rarr; Terraform &rarr; AWS EC2</p>
+</div>
+</body>
+</html>

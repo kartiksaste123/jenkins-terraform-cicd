@@ -1,0 +1,10 @@
+.git
+.venv
+venv
+terraform
+evidence
+jenkins
+.secrets
+**/__pycache__
+*.pyc
+reports
