@@ -1,0 +1,16 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ git --version; python3 --version; docker --version; terraform version; aws --version; docker exec jenkins bash -c 'java -version 2>&1 | head -1; terraform version | head -1; docker --version; python3 --version'; curl -s http://localhost:8081/login -o /dev/null -w 'Jenkins on http://localhost:8081  ->  HTTP %{http_code}, version: ' ; curl -sI http://localhost:8081/login | grep -i x-jenkins: | cut -d' ' -f2
+git version 2.47.3
+Python 3.13.5
+Docker version 26.1.5+dfsg1, build a72d7cd
+Terraform v1.9.8
+on linux_amd64
+
+Your version of Terraform is out of date! The latest version
+is 1.17.1. You can update by downloading from https://www.terraform.io/downloads.html
+aws-cli/2.39.3 Python/3.14.8 Linux/6.12.94+ exe/x86_64.debian.13
+openjdk version "17.0.18" 2026-01-20
+Terraform v1.9.8
+Docker version 26.1.4, build 5650f9b
+Python 3.13.5
+Jenkins on http://localhost:8081  ->  HTTP 200, version: 2.541.3
+

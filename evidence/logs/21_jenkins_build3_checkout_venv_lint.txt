@@ -1,0 +1,98 @@
+# Jenkins build #3 (started by an SCM change) - GitHub checkout, Python venv, flake8
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/3/console
+
+===== Stage: Checkout =====
+[19:50:17 IST] Selected Git installation does not exist. Using Default
+[19:50:17 IST] The recommended git tool is: NONE
+[19:50:17 IST] No credentials specified
+[19:50:17 IST] Cloning the remote Git repository
+[19:50:17 IST] Cloning repository https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[19:50:17 IST]  > git init /var/jenkins_home/workspace/jenkins-terraform-cicd # timeout=10
+[19:50:17 IST] Fetching upstream changes from https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[19:50:17 IST]  > git --version # timeout=10
+[19:50:17 IST]  > git --version # 'git version 2.47.3'
+[19:50:17 IST]  > git fetch --tags --force --progress -- https://github.com/kartiksaste123/jenkins-terraform-cicd.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[19:50:19 IST]  > git config remote.origin.url https://github.com/kartiksaste123/jenkins-terraform-cicd.git # timeout=10
+[19:50:19 IST]  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+[19:50:19 IST] Avoid second fetch
+[19:50:19 IST]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[19:50:19 IST] Checking out Revision 1be03c2efa25a1f6b343fe7f5cb6eb35401aa33a (refs/remotes/origin/main)
+[19:50:19 IST]  > git config core.sparsecheckout # timeout=10
+[19:50:19 IST]  > git checkout -f 1be03c2efa25a1f6b343fe7f5cb6eb35401aa33a # timeout=10
+[19:50:19 IST] Commit message: "Add docker buildx to Jenkins image; list Terraform state after apply; add helper scripts"
+[19:50:19 IST]  > git rev-list --no-walk 960d2a0f6b674ccca0de873cdfe76288acc16203 # timeout=10
+[19:50:19 IST] + git config --get remote.origin.url
+[19:50:19 IST] + echo Repository : https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[19:50:19 IST] Repository : https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[19:50:19 IST] + echo Branch     : main
+[19:50:19 IST] Branch     : main
+[19:50:19 IST] + git log -1 --pretty=format:Commit     : %H%nAuthor     : %an <%ae>%nDate       : %ad%nMessage    : %s%n
+[19:50:19 IST] Commit     : 1be03c2efa25a1f6b343fe7f5cb6eb35401aa33a
+[19:50:19 IST] Author     : Kartik Saste <kartiksaste4@gmail.com>
+[19:50:19 IST] Date       : Tue Nov 3 19:47:34 2026 +0530
+[19:50:19 IST] Message    : Add docker buildx to Jenkins image; list Terraform state after apply; add helper scripts
+
+===== Stage: Setup Python venv =====
+[19:50:20 IST] + python3 --version
+[19:50:20 IST] Python 3.13.5
+[19:50:20 IST] + python3 -m venv .venv
+[19:50:22 IST] + . .venv/bin/activate
+[19:50:22 IST] + deactivate nondestructive
+[19:50:22 IST] + [ -n  ]
+[19:50:22 IST] + [ -n  ]
+[19:50:22 IST] + hash -r
+[19:50:22 IST] + [ -n  ]
+[19:50:22 IST] + unset VIRTUAL_ENV
+[19:50:22 IST] + unset VIRTUAL_ENV_PROMPT
+[19:50:22 IST] + [ ! nondestructive = nondestructive ]
+[19:50:22 IST] + uname
+[19:50:22 IST] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[19:50:22 IST] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:50:22 IST] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:50:22 IST] + export PATH
+[19:50:22 IST] + VIRTUAL_ENV_PROMPT=.venv
+[19:50:22 IST] + export VIRTUAL_ENV_PROMPT
+[19:50:22 IST] + [ -n  ]
+[19:50:22 IST] + [ -z  ]
+[19:50:22 IST] + _OLD_VIRTUAL_PS1=$ 
+[19:50:22 IST] + PS1=(.venv) $ 
+[19:50:22 IST] + export PS1
+[19:50:22 IST] + hash -r
+[19:50:22 IST] + pip install --quiet --upgrade pip
+[19:50:23 IST] + pip install --quiet -r requirements-dev.txt
+[19:50:24 IST] + pip freeze
+[19:50:24 IST] + grep -iE flask|pytest|flake8|gunicorn
+[19:50:24 IST] flake8==7.1.1
+[19:50:24 IST] Flask==3.0.3
+[19:50:24 IST] gunicorn==23.0.0
+[19:50:24 IST] pytest==8.3.3
+[19:50:24 IST] pytest-cov==5.0.0
+
+===== Stage: Lint (flake8) =====
+[19:50:25 IST] + . .venv/bin/activate
+[19:50:25 IST] + deactivate nondestructive
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + hash -r
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + unset VIRTUAL_ENV
+[19:50:25 IST] + unset VIRTUAL_ENV_PROMPT
+[19:50:25 IST] + [ ! nondestructive = nondestructive ]
+[19:50:25 IST] + uname
+[19:50:25 IST] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[19:50:25 IST] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:50:25 IST] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:50:25 IST] + export PATH
+[19:50:25 IST] + VIRTUAL_ENV_PROMPT=.venv
+[19:50:25 IST] + export VIRTUAL_ENV_PROMPT
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + [ -z  ]
+[19:50:25 IST] + _OLD_VIRTUAL_PS1=$ 
+[19:50:25 IST] + PS1=(.venv) $ 
+[19:50:25 IST] + export PS1
+[19:50:25 IST] + hash -r
+[19:50:25 IST] + flake8 --count --statistics
+[19:50:25 IST] 0
+[19:50:25 IST] + echo flake8: no issues found
+[19:50:25 IST] flake8: no issues found
+

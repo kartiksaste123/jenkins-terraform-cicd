@@ -1,0 +1,19 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ curl -s -i http://65.0.100.95/health; echo; curl -s http://65.0.100.95/api/info; echo; curl -s http://65.0.100.95/api/tasks; echo; curl -s http://65.0.100.95:5000/health; echo; curl -s http://65.0.100.95/ | grep -E '<title>|<h1>'
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Tue, 03 Nov 2026 14:28:33 GMT
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 58
+
+{"status":"ok","time":"2026-11-03T14:28:33.406197+00:00"}
+
+{"app":"student-task-tracker","author":"Kartik Saste","build":"ec2","hostname":"f9673c1f00aa","version":"1.0.0"}
+
+{"count":3,"tasks":[{"done":true,"id":1,"title":"Write the Jenkinsfile"},{"done":true,"id":2,"title":"Write Terraform for EC2"},{"done":false,"id":3,"title":"Run terraform plan in Jenkins"}]}
+
+{"status":"ok","time":"2026-11-03T14:28:34.822298+00:00"}
+
+  <title>Student Task Tracker | Jenkins + Terraform</title>
+  <h1>Student Task Tracker</h1>
+

@@ -1,0 +1,37 @@
+# Jenkins build #4 - CI caught flake8 errors in a new commit, pipeline stopped (fixed in the next commit)
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/4/console
+
+===== Stage: Lint (flake8) =====
+[19:55:24 IST] + . .venv/bin/activate
+[19:55:24 IST] + deactivate nondestructive
+[19:55:24 IST] + [ -n  ]
+[19:55:24 IST] + [ -n  ]
+[19:55:24 IST] + hash -r
+[19:55:24 IST] + [ -n  ]
+[19:55:24 IST] + unset VIRTUAL_ENV
+[19:55:24 IST] + unset VIRTUAL_ENV_PROMPT
+[19:55:24 IST] + [ ! nondestructive = nondestructive ]
+[19:55:24 IST] + uname
+[19:55:24 IST] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[19:55:24 IST] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:55:24 IST] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:55:24 IST] + export PATH
+[19:55:24 IST] + VIRTUAL_ENV_PROMPT=.venv
+[19:55:24 IST] + export VIRTUAL_ENV_PROMPT
+[19:55:24 IST] + [ -n  ]
+[19:55:24 IST] + [ -z  ]
+[19:55:24 IST] + _OLD_VIRTUAL_PS1=$ 
+[19:55:24 IST] + PS1=(.venv) $ 
+[19:55:24 IST] + export PS1
+[19:55:24 IST] + hash -r
+[19:55:24 IST] + flake8 --count --statistics
+[19:55:24 IST] ./scripts/jenkins_screenshots.py:20:121: E501 line too long (127 > 120 characters)
+[19:55:24 IST] ./scripts/render_terminal_png.py:29:25: E741 ambiguous variable name 'l'
+[19:55:24 IST] ./scripts/render_terminal_png.py:33:121: E501 line too long (122 > 120 characters)
+[19:55:24 IST] ./scripts/render_terminal_png.py:35:9: E741 ambiguous variable name 'l'
+[19:55:24 IST] ./scripts/render_terminal_png.py:39:47: E741 ambiguous variable name 'l'
+[19:55:24 IST] ./scripts/render_terminal_png.py:51:9: E741 ambiguous variable name 'l'
+[19:55:24 IST] 2     E501 line too long (127 > 120 characters)
+[19:55:24 IST] 4     E741 ambiguous variable name 'l'
+[19:55:24 IST] 6
+

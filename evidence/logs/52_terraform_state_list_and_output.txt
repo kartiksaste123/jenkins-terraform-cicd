@@ -1,0 +1,14 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ docker exec jenkins sh -c 'cd /var/jenkins_home/tfstate/jenkins-terraform-cicd && terraform state list -state=terraform.tfstate && echo && terraform output -state=terraform.tfstate'
+data.aws_ami.amazon_linux_2023
+data.aws_subnets.default
+data.aws_vpc.default
+aws_instance.app
+aws_security_group.app
+
+ami_id = "ami-00531e78dd10fb3be"
+app_url = "http://65.0.100.95/"
+instance_id = "i-085d9d4631189d6c1"
+public_dns = "ec2-65-0-100-95.ap-south-1.compute.amazonaws.com"
+public_ip = "65.0.100.95"
+security_group_id = "sg-0fe464e81f91c0621"
+

@@ -1,0 +1,12 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ terraform -chdir=terraform init -input=false -no-color
+Initializing the backend...
+
+Successfully configured the backend "local"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Installing hashicorp/aws v5.100.0...
+- Installed hashicorp/aws v5.100.0 (signed by HashiCorp)
+
+Terraform has been successfully initialized!
+

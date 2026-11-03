@@ -1,0 +1,207 @@
+# Jenkins build #3 - terraform plan -out=tfplan (credentials from Jenkins credential 'aws-terraform-ci')
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/3/console
+
+===== Stage: Terraform Plan =====
+[19:50:36 IST] Masking supported pattern matches of $AWS_SECRET_ACCESS_KEY
+[19:50:36 IST] Masking supported pattern matches of $AWS_SECRET_ACCESS_KEY
+[19:50:36 IST] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[19:50:39 IST] data.aws_ami.amazon_linux_2023: Reading...
+[19:50:39 IST] data.aws_vpc.default: Reading...
+[19:50:41 IST] data.aws_ami.amazon_linux_2023: Read complete after 2s [id=ami-00531e78dd10fb3be]
+[19:50:41 IST] data.aws_vpc.default: Read complete after 3s [id=vpc-0dee03f3a5eafb8f2]
+[19:50:41 IST] data.aws_subnets.default: Reading...
+[19:50:42 IST] data.aws_subnets.default: Read complete after 0s [id=ap-south-1]
+[19:50:42 IST] 
+[19:50:42 IST] Terraform used the selected providers to generate the following execution
+[19:50:42 IST] plan. Resource actions are indicated with the following symbols:
+[19:50:42 IST]   + create
+[19:50:42 IST] 
+[19:50:42 IST] Terraform will perform the following actions:
+[19:50:42 IST] 
+[19:50:42 IST]   # aws_instance.app will be created
+[19:50:42 IST]   + resource "aws_instance" "app" {
+[19:50:42 IST]       + ami                                  = "ami-00531e78dd10fb3be"
+[19:50:42 IST]       + arn                                  = (known after apply)
+[19:50:42 IST]       + associate_public_ip_address          = true
+[19:50:42 IST]       + availability_zone                    = (known after apply)
+[19:50:42 IST]       + cpu_core_count                       = (known after apply)
+[19:50:42 IST]       + cpu_threads_per_core                 = (known after apply)
+[19:50:42 IST]       + disable_api_stop                     = (known after apply)
+[19:50:42 IST]       + disable_api_termination              = (known after apply)
+[19:50:42 IST]       + ebs_optimized                        = (known after apply)
+[19:50:42 IST]       + enable_primary_ipv6                  = (known after apply)
+[19:50:42 IST]       + get_password_data                    = false
+[19:50:42 IST]       + host_id                              = (known after apply)
+[19:50:42 IST]       + host_resource_group_arn              = (known after apply)
+[19:50:42 IST]       + iam_instance_profile                 = (known after apply)
+[19:50:42 IST]       + id                                   = (known after apply)
+[19:50:42 IST]       + instance_initiated_shutdown_behavior = (known after apply)
+[19:50:42 IST]       + instance_lifecycle                   = (known after apply)
+[19:50:42 IST]       + instance_state                       = (known after apply)
+[19:50:42 IST]       + instance_type                        = "t3.micro"
+[19:50:42 IST]       + ipv6_address_count                   = (known after apply)
+[19:50:42 IST]       + ipv6_addresses                       = (known after apply)
+[19:50:42 IST]       + key_name                             = (known after apply)
+[19:50:42 IST]       + monitoring                           = (known after apply)
+[19:50:42 IST]       + outpost_arn                          = (known after apply)
+[19:50:42 IST]       + password_data                        = (known after apply)
+[19:50:42 IST]       + placement_group                      = (known after apply)
+[19:50:42 IST]       + placement_partition_number           = (known after apply)
+[19:50:42 IST]       + primary_network_interface_id         = (known after apply)
+[19:50:42 IST]       + private_dns                          = (known after apply)
+[19:50:42 IST]       + private_ip                           = (known after apply)
+[19:50:42 IST]       + public_dns                           = (known after apply)
+[19:50:42 IST]       + public_ip                            = (known after apply)
+[19:50:42 IST]       + secondary_private_ips                = (known after apply)
+[19:50:42 IST]       + security_groups                      = (known after apply)
+[19:50:42 IST]       + source_dest_check                    = true
+[19:50:42 IST]       + spot_instance_request_id             = (known after apply)
+[19:50:42 IST]       + subnet_id                            = "subnet-0095f703c6d1d6394"
+[19:50:42 IST]       + tags                                 = {
+[19:50:42 IST]           + "Name" = "jenkins-terraform-cicd-dev-app"
+[19:50:42 IST]         }
+[19:50:42 IST]       + tags_all                             = {
+[19:50:42 IST]           + "Environment" = "dev"
+[19:50:42 IST]           + "ManagedBy"   = "Terraform"
+[19:50:42 IST]           + "Name"        = "jenkins-terraform-cicd-dev-app"
+[19:50:42 IST]           + "Owner"       = "Kartik Saste"
+[19:50:42 IST]           + "Pipeline"    = "Jenkins"
+[19:50:42 IST]           + "Project"     = "jenkins-terraform-cicd"
+[19:50:42 IST]         }
+[19:50:42 IST]       + tenancy                              = (known after apply)
+[19:50:42 IST]       + user_data                            = "37e23b9b47023ebe15aed1af8f14dd025fe01e5e"
+[19:50:42 IST]       + user_data_base64                     = (known after apply)
+[19:50:42 IST]       + user_data_replace_on_change          = true
+[19:50:42 IST]       + vpc_security_group_ids               = (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + capacity_reservation_specification (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + cpu_options (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + ebs_block_device (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + enclave_options (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + ephemeral_block_device (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + instance_market_options (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + maintenance_options (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + metadata_options {
+[19:50:42 IST]           + http_endpoint               = "enabled"
+[19:50:42 IST]           + http_protocol_ipv6          = "disabled"
+[19:50:42 IST]           + http_put_response_hop_limit = 2
+[19:50:42 IST]           + http_tokens                 = "required"
+[19:50:42 IST]           + instance_metadata_tags      = (known after apply)
+[19:50:42 IST]         }
+[19:50:42 IST] 
+[19:50:42 IST]       + network_interface (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + private_dns_name_options (known after apply)
+[19:50:42 IST] 
+[19:50:42 IST]       + root_block_device {
+[19:50:42 IST]           + delete_on_termination = true
+[19:50:42 IST]           + device_name           = (known after apply)
+[19:50:42 IST]           + encrypted             = true
+[19:50:42 IST]           + iops                  = (known after apply)
+[19:50:42 IST]           + kms_key_id            = (known after apply)
+[19:50:42 IST]           + tags_all              = (known after apply)
+[19:50:42 IST]           + throughput            = (known after apply)
+[19:50:42 IST]           + volume_id             = (known after apply)
+[19:50:42 IST]           + volume_size           = 8
+[19:50:42 IST]           + volume_type           = "gp3"
+[19:50:42 IST]         }
+[19:50:42 IST]     }
+[19:50:42 IST] 
+[19:50:42 IST]   # aws_security_group.app will be created
+[19:50:42 IST]   + resource "aws_security_group" "app" {
+[19:50:42 IST]       + arn                    = (known after apply)
+[19:50:42 IST]       + description            = "Allow SSH from admin CIDR and HTTP/Flask from anywhere"
+[19:50:42 IST]       + egress                 = [
+[19:50:42 IST]           + {
+[19:50:42 IST]               + cidr_blocks      = [
+[19:50:42 IST]                   + "0.0.0.0/0",
+[19:50:42 IST]                 ]
+[19:50:42 IST]               + description      = "All outbound traffic"
+[19:50:42 IST]               + from_port        = 0
+[19:50:42 IST]               + ipv6_cidr_blocks = []
+[19:50:42 IST]               + prefix_list_ids  = []
+[19:50:42 IST]               + protocol         = "-1"
+[19:50:42 IST]               + security_groups  = []
+[19:50:42 IST]               + self             = false
+[19:50:42 IST]               + to_port          = 0
+[19:50:42 IST]             },
+[19:50:42 IST]         ]
+[19:50:42 IST]       + id                     = (known after apply)
+[19:50:42 IST]       + ingress                = [
+[19:50:42 IST]           + {
+[19:50:42 IST]               + cidr_blocks      = [
+[19:50:42 IST]                   + "0.0.0.0/0",
+[19:50:42 IST]                 ]
+[19:50:42 IST]               + description      = "Flask app port"
+[19:50:42 IST]               + from_port        = 5000
+[19:50:42 IST]               + ipv6_cidr_blocks = []
+[19:50:42 IST]               + prefix_list_ids  = []
+[19:50:42 IST]               + protocol         = "tcp"
+[19:50:42 IST]               + security_groups  = []
+[19:50:42 IST]               + self             = false
+[19:50:42 IST]               + to_port          = 5000
+[19:50:42 IST]             },
+[19:50:42 IST]           + {
+[19:50:42 IST]               + cidr_blocks      = [
+[19:50:42 IST]                   + "0.0.0.0/0",
+[19:50:42 IST]                 ]
+[19:50:42 IST]               + description      = "HTTP"
+[19:50:42 IST]               + from_port        = 80
+[19:50:42 IST]               + ipv6_cidr_blocks = []
+[19:50:42 IST]               + prefix_list_ids  = []
+[19:50:42 IST]               + protocol         = "tcp"
+[19:50:42 IST]               + security_groups  = []
+[19:50:42 IST]               + self             = false
+[19:50:42 IST]               + to_port          = 80
+[19:50:42 IST]             },
+[19:50:42 IST]           + {
+[19:50:42 IST]               + cidr_blocks      = [
+[19:50:42 IST]                   + "100.22.120.45/32",
+[19:50:42 IST]                 ]
+[19:50:42 IST]               + description      = "SSH"
+[19:50:42 IST]               + from_port        = 22
+[19:50:42 IST]               + ipv6_cidr_blocks = []
+[19:50:42 IST]               + prefix_list_ids  = []
+[19:50:42 IST]               + protocol         = "tcp"
+[19:50:42 IST]               + security_groups  = []
+[19:50:42 IST]               + self             = false
+[19:50:42 IST]               + to_port          = 22
+[19:50:42 IST]             },
+[19:50:42 IST]         ]
+[19:50:42 IST]       + name                   = "jenkins-terraform-cicd-dev-sg"
+[19:50:42 IST]       + name_prefix            = (known after apply)
+[19:50:42 IST]       + owner_id               = (known after apply)
+[19:50:42 IST]       + revoke_rules_on_delete = false
+[19:50:42 IST]       + tags                   = {
+[19:50:42 IST]           + "Name" = "jenkins-terraform-cicd-dev-sg"
+[19:50:42 IST]         }
+[19:50:42 IST]       + tags_all               = {
+[19:50:42 IST]           + "Environment" = "dev"
+[19:50:42 IST]           + "ManagedBy"   = "Terraform"
+[19:50:42 IST]           + "Name"        = "jenkins-terraform-cicd-dev-sg"
+[19:50:42 IST]           + "Owner"       = "Kartik Saste"
+[19:50:42 IST]           + "Pipeline"    = "Jenkins"
+[19:50:42 IST]           + "Project"     = "jenkins-terraform-cicd"
+[19:50:42 IST]         }
+[19:50:42 IST]       + vpc_id                 = "vpc-0dee03f3a5eafb8f2"
+[19:50:42 IST]     }
+[19:50:42 IST] 
+[19:50:42 IST] Plan: 2 to add, 0 to change, 0 to destroy.
+[19:50:42 IST] 
+[19:50:42 IST] Changes to Outputs:
+[19:50:42 IST]   + ami_id            = "ami-00531e78dd10fb3be"
+[19:50:42 IST]   + app_url           = (known after apply)
+[19:50:42 IST]   + instance_id       = (known after apply)
+[19:50:42 IST]   + public_dns        = (known after apply)
+[19:50:42 IST]   + public_ip         = (known after apply)
+[19:50:42 IST]   + security_group_id = (known after apply)
+Post stage
+[19:50:44 IST] Archiving artifacts
+

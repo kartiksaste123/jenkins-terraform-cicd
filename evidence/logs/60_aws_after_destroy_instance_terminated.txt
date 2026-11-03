@@ -1,0 +1,14 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ aws ec2 describe-instances --region ap-south-1 --instance-ids i-085d9d4631189d6c1 --query 'Reservations[].Instances[].{ID:InstanceId,Type:InstanceType,State:State.Name,Reason:StateTransitionReason}' --output table; aws ec2 describe-instances --region ap-south-1 --filters Name=instance-state-name,Values=pending,running,stopping,stopped --query 'length(Reservations[].Instances[])' --output text | xargs -I{} echo 'Instances still running/stopped in ap-south-1: {}'; aws ec2 describe-security-groups --region ap-south-1 --group-ids sg-0fe464e81f91c0621 2>&1 | tail -1; curl -s -m 5 http://65.0.100.95/health || echo 'curl http://65.0.100.95/health -> no response (instance terminated)'; docker exec jenkins sh -c 'cd /var/jenkins_home/tfstate/jenkins-terraform-cicd && echo "terraform state list: $(terraform state list -state=terraform.tfstate | wc -l) resources"'
+--------------------------------------------------------
+|                   DescribeInstances                  |
++--------+---------------------------------------------+
+|  ID    |  i-085d9d4631189d6c1                        |
+|  Reason|  User initiated (2026-11-03 14:30:01 GMT)   |
+|  State |  terminated                                 |
+|  Type  |  t3.micro                                   |
++--------+---------------------------------------------+
+Instances still running/stopped in ap-south-1: 0
+aws: [ERROR]: An error occurred (InvalidGroup.NotFound) when calling the DescribeSecurityGroups operation: The security group 'sg-0fe464e81f91c0621' does not exist
+curl http://65.0.100.95/health -> no response (instance terminated)
+terraform state list: 0 resources
+

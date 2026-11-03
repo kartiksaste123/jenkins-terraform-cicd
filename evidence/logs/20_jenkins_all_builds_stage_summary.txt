@@ -1,0 +1,105 @@
+# Jenkins job jenkins-terraform-cicd - all builds (stage results and durations from /wfapi)
+# Build #1 and #3 were started by SCM polling (H/5 * * * *); #4 shows CI catching a lint error
+
+Build #1: SUCCESS  total 48.5s
+  Checkout                   SUCCESS          3.2s
+  Setup Python venv          SUCCESS          6.3s
+  Lint (flake8)              SUCCESS          0.3s
+  Unit Tests (pytest)        SUCCESS          0.7s
+  Build Docker Image         SUCCESS          4.9s
+  Smoke Test Container       SUCCESS          1.9s
+  Terraform Init             SUCCESS         10.8s
+  Terraform Fmt Check        SUCCESS          0.3s
+  Terraform Validate         SUCCESS          2.8s
+  Terraform Plan             SUCCESS          8.1s
+  Terraform Apply            NOT_EXECUTED     0.2s
+  Verify EC2 Deployment      NOT_EXECUTED     0.0s
+  Terraform Destroy          NOT_EXECUTED     0.0s
+  Declarative: Post Actions  SUCCESS          0.4s
+  Cause: Started by an SCM change
+
+Build #2: SUCCESS  total 26.5s
+  Checkout                   SUCCESS          2.6s
+  Setup Python venv          SUCCESS          4.9s
+  Lint (flake8)              SUCCESS          0.3s
+  Unit Tests (pytest)        SUCCESS          0.6s
+  Build Docker Image         SUCCESS          0.3s
+  Smoke Test Container       SUCCESS          1.8s
+  Terraform Init             SUCCESS          2.6s
+  Terraform Fmt Check        SUCCESS          0.3s
+  Terraform Validate         SUCCESS          2.2s
+  Terraform Plan             SUCCESS          7.8s
+  Terraform Apply            NOT_EXECUTED     0.1s
+  Verify EC2 Deployment      NOT_EXECUTED     0.0s
+  Terraform Destroy          NOT_EXECUTED     0.0s
+  Declarative: Post Actions  SUCCESS          0.4s
+  Cause: Started by user Kartik Saste
+
+Build #3: SUCCESS  total 32.9s
+  Checkout                   SUCCESS          2.8s
+  Setup Python venv          SUCCESS          4.9s
+  Lint (flake8)              SUCCESS          0.3s
+  Unit Tests (pytest)        SUCCESS          0.7s
+  Build Docker Image         SUCCESS          3.0s
+  Smoke Test Container       SUCCESS          1.9s
+  Terraform Init             SUCCESS          2.6s
+  Terraform Fmt Check        SUCCESS          0.3s
+  Terraform Validate         SUCCESS          2.2s
+  Terraform Plan             SUCCESS          8.1s
+  Terraform Apply            NOT_EXECUTED     0.2s
+  Verify EC2 Deployment      NOT_EXECUTED     0.0s
+  Terraform Destroy          NOT_EXECUTED     0.0s
+  Declarative: Post Actions  SUCCESS          0.4s
+  Cause: Started by an SCM change
+
+Build #4: FAILED  total 13.7s
+  Checkout                   SUCCESS          3.7s
+  Setup Python venv          SUCCESS          4.9s
+  Lint (flake8)              FAILED           0.4s
+  Unit Tests (pytest)        FAILED           0.0s
+  Build Docker Image         FAILED           0.0s
+  Smoke Test Container       FAILED           0.0s
+  Terraform Init             FAILED           0.0s
+  Terraform Fmt Check        FAILED           0.1s
+  Terraform Validate         FAILED           0.0s
+  Terraform Plan             FAILED           0.0s
+  Terraform Apply            FAILED           0.0s
+  Verify EC2 Deployment      FAILED           0.0s
+  Terraform Destroy          FAILED           0.0s
+  Declarative: Post Actions  SUCCESS          0.4s
+  Cause: Started by user Kartik Saste
+
+Build #5: SUCCESS  total 130.6s
+  Checkout                   SUCCESS          2.8s
+  Setup Python venv          SUCCESS          5.2s
+  Lint (flake8)              SUCCESS          0.3s
+  Unit Tests (pytest)        SUCCESS          0.6s
+  Build Docker Image         SUCCESS          0.3s
+  Smoke Test Container       SUCCESS          1.9s
+  Terraform Init             SUCCESS          2.6s
+  Terraform Fmt Check        SUCCESS          0.3s
+  Terraform Validate         SUCCESS          2.2s
+  Terraform Plan             SUCCESS          7.9s
+  Terraform Apply            SUCCESS         25.0s
+  Verify EC2 Deployment      SUCCESS         78.4s
+  Terraform Destroy          NOT_EXECUTED     0.0s
+  Declarative: Post Actions  SUCCESS          0.4s
+  Cause: Started by user Kartik Saste
+
+Build #6: SUCCESS  total 68.3s
+  Checkout                   SUCCESS          2.6s
+  Setup Python venv          SUCCESS          4.7s
+  Lint (flake8)              SUCCESS          0.3s
+  Unit Tests (pytest)        SUCCESS          0.6s
+  Build Docker Image         SUCCESS          0.5s
+  Smoke Test Container       SUCCESS          1.7s
+  Terraform Init             SUCCESS          2.6s
+  Terraform Fmt Check        SUCCESS          0.3s
+  Terraform Validate         SUCCESS          2.2s
+  Terraform Plan             SUCCESS         12.7s
+  Terraform Apply            NOT_EXECUTED     0.0s
+  Verify EC2 Deployment      NOT_EXECUTED     0.0s
+  Terraform Destroy          SUCCESS         37.2s
+  Declarative: Post Actions  SUCCESS          0.3s
+  Cause: Started by user Kartik Saste
+

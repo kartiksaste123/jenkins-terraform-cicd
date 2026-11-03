@@ -1,0 +1,209 @@
+Started by user Kartik Saste
+Obtained Jenkinsfile from git https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/jenkins-terraform-cicd
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] timeout
+[2026-11-03T14:25:15.702Z] Timeout set to expire in 45 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+[2026-11-03T14:25:15.742Z] Selected Git installation does not exist. Using Default
+[2026-11-03T14:25:15.743Z] The recommended git tool is: NONE
+[2026-11-03T14:25:15.743Z] No credentials specified
+[2026-11-03T14:25:15.743Z] Cloning the remote Git repository
+[2026-11-03T14:25:15.743Z] Cloning repository https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:25:15.743Z]  > git init /var/jenkins_home/workspace/jenkins-terraform-cicd # timeout=10
+[2026-11-03T14:25:15.749Z] Fetching upstream changes from https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:25:15.749Z]  > git --version # timeout=10
+[2026-11-03T14:25:15.752Z]  > git --version # 'git version 2.47.3'
+[2026-11-03T14:25:15.752Z]  > git fetch --tags --force --progress -- https://github.com/kartiksaste123/jenkins-terraform-cicd.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-11-03T14:25:19.056Z]  > git config remote.origin.url https://github.com/kartiksaste123/jenkins-terraform-cicd.git # timeout=10
+[2026-11-03T14:25:19.059Z]  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-11-03T14:25:19.064Z] Avoid second fetch
+[2026-11-03T14:25:19.064Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-11-03T14:25:19.068Z] Checking out Revision 98a643c7d5ae68cd21c867954e010861838c504a (refs/remotes/origin/main)
+[2026-11-03T14:25:19.068Z]  > git config core.sparsecheckout # timeout=10
+[2026-11-03T14:25:19.071Z]  > git checkout -f 98a643c7d5ae68cd21c867954e010861838c504a # timeout=10
+[2026-11-03T14:25:19.078Z] Commit message: "Archive only test/coverage XML and Terraform outputs as build artifacts"
+[2026-11-03T14:25:19.078Z]  > git rev-list --no-walk 1be03c2efa25a1f6b343fe7f5cb6eb35401aa33a # timeout=10
+[Pipeline] sh
+[2026-11-03T14:25:19.353Z] + git config --get remote.origin.url
+[2026-11-03T14:25:19.353Z] + echo Repository : https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:25:19.353Z] Repository : https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:25:19.353Z] + echo Branch     : main
+[2026-11-03T14:25:19.353Z] Branch     : main
+[2026-11-03T14:25:19.353Z] + git log -1 --pretty=format:Commit     : %H%nAuthor     : %an <%ae>%nDate       : %ad%nMessage    : %s%n
+[2026-11-03T14:25:19.353Z] Commit     : 98a643c7d5ae68cd21c867954e010861838c504a
+[2026-11-03T14:25:19.353Z] Author     : Kartik Saste <kartiksaste4@gmail.com>
+[2026-11-03T14:25:19.353Z] Date       : Tue Nov 3 19:54:58 2026 +0530
+[2026-11-03T14:25:19.353Z] Message    : Archive only test/coverage XML and Terraform outputs as build artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Setup Python venv)
+[Pipeline] sh
+[2026-11-03T14:25:19.671Z] + python3 --version
+[2026-11-03T14:25:19.671Z] Python 3.13.5
+[2026-11-03T14:25:19.671Z] + python3 -m venv .venv
+[2026-11-03T14:25:21.535Z] + . .venv/bin/activate
+[2026-11-03T14:25:21.535Z] + deactivate nondestructive
+[2026-11-03T14:25:21.535Z] + [ -n  ]
+[2026-11-03T14:25:21.535Z] + [ -n  ]
+[2026-11-03T14:25:21.535Z] + hash -r
+[2026-11-03T14:25:21.535Z] + [ -n  ]
+[2026-11-03T14:25:21.535Z] + unset VIRTUAL_ENV
+[2026-11-03T14:25:21.535Z] + unset VIRTUAL_ENV_PROMPT
+[2026-11-03T14:25:21.535Z] + [ ! nondestructive = nondestructive ]
+[2026-11-03T14:25:21.535Z] + uname
+[2026-11-03T14:25:21.535Z] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[2026-11-03T14:25:21.535Z] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:25:21.535Z] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:25:21.535Z] + export PATH
+[2026-11-03T14:25:21.535Z] + VIRTUAL_ENV_PROMPT=.venv
+[2026-11-03T14:25:21.535Z] + export VIRTUAL_ENV_PROMPT
+[2026-11-03T14:25:21.535Z] + [ -n  ]
+[2026-11-03T14:25:21.535Z] + [ -z  ]
+[2026-11-03T14:25:21.535Z] + _OLD_VIRTUAL_PS1=$ 
+[2026-11-03T14:25:21.535Z] + PS1=(.venv) $ 
+[2026-11-03T14:25:21.535Z] + export PS1
+[2026-11-03T14:25:21.535Z] + hash -r
+[2026-11-03T14:25:21.535Z] + pip install --quiet --upgrade pip
+[2026-11-03T14:25:22.447Z] + pip install --quiet -r requirements-dev.txt
+[2026-11-03T14:25:24.311Z] + pip freeze
+[2026-11-03T14:25:24.311Z] + grep -iE flask|pytest|flake8|gunicorn
+[2026-11-03T14:25:24.311Z] flake8==7.1.1
+[2026-11-03T14:25:24.311Z] Flask==3.0.3
+[2026-11-03T14:25:24.311Z] gunicorn==23.0.0
+[2026-11-03T14:25:24.311Z] pytest==8.3.3
+[2026-11-03T14:25:24.311Z] pytest-cov==5.0.0
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Lint (flake8))
+[Pipeline] sh
+[2026-11-03T14:25:24.625Z] + . .venv/bin/activate
+[2026-11-03T14:25:24.625Z] + deactivate nondestructive
+[2026-11-03T14:25:24.625Z] + [ -n  ]
+[2026-11-03T14:25:24.625Z] + [ -n  ]
+[2026-11-03T14:25:24.625Z] + hash -r
+[2026-11-03T14:25:24.625Z] + [ -n  ]
+[2026-11-03T14:25:24.625Z] + unset VIRTUAL_ENV
+[2026-11-03T14:25:24.625Z] + unset VIRTUAL_ENV_PROMPT
+[2026-11-03T14:25:24.625Z] + [ ! nondestructive = nondestructive ]
+[2026-11-03T14:25:24.625Z] + uname
+[2026-11-03T14:25:24.625Z] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[2026-11-03T14:25:24.625Z] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:25:24.625Z] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:25:24.625Z] + export PATH
+[2026-11-03T14:25:24.625Z] + VIRTUAL_ENV_PROMPT=.venv
+[2026-11-03T14:25:24.625Z] + export VIRTUAL_ENV_PROMPT
+[2026-11-03T14:25:24.625Z] + [ -n  ]
+[2026-11-03T14:25:24.625Z] + [ -z  ]
+[2026-11-03T14:25:24.625Z] + _OLD_VIRTUAL_PS1=$ 
+[2026-11-03T14:25:24.625Z] + PS1=(.venv) $ 
+[2026-11-03T14:25:24.625Z] + export PS1
+[2026-11-03T14:25:24.625Z] + hash -r
+[2026-11-03T14:25:24.625Z] + flake8 --count --statistics
+[2026-11-03T14:25:24.625Z] ./scripts/jenkins_screenshots.py:20:121: E501 line too long (127 > 120 characters)
+[2026-11-03T14:25:24.625Z] ./scripts/render_terminal_png.py:29:25: E741 ambiguous variable name 'l'
+[2026-11-03T14:25:24.625Z] ./scripts/render_terminal_png.py:33:121: E501 line too long (122 > 120 characters)
+[2026-11-03T14:25:24.625Z] ./scripts/render_terminal_png.py:35:9: E741 ambiguous variable name 'l'
+[2026-11-03T14:25:24.625Z] ./scripts/render_terminal_png.py:39:47: E741 ambiguous variable name 'l'
+[2026-11-03T14:25:24.625Z] ./scripts/render_terminal_png.py:51:9: E741 ambiguous variable name 'l'
+[2026-11-03T14:25:24.625Z] 2     E501 line too long (127 > 120 characters)
+[2026-11-03T14:25:24.625Z] 4     E741 ambiguous variable name 'l'
+[2026-11-03T14:25:24.625Z] 6
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit Tests (pytest))
+Stage "Unit Tests (pytest)" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+Stage "Build Docker Image" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Smoke Test Container)
+Stage "Smoke Test Container" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Init)
+Stage "Terraform Init" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Fmt Check)
+Stage "Terraform Fmt Check" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Validate)
+Stage "Terraform Validate" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Plan)
+Stage "Terraform Plan" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Apply)
+Stage "Terraform Apply" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Verify EC2 Deployment)
+Stage "Verify EC2 Deployment" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Destroy)
+Stage "Terraform Destroy" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] archiveArtifacts
+[2026-11-03T14:25:25.258Z] Archiving artifacts
+[Pipeline] echo
+[2026-11-03T14:25:25.278Z] FAILURE: jenkins-terraform-cicd #4 - check the stage logs above.
+[Pipeline] sh
+[2026-11-03T14:25:25.542Z] + docker rm -f smoke-4
+[Pipeline] cleanWs
+[2026-11-03T14:25:25.596Z] [WS-CLEANUP] Deleting project workspace...
+[2026-11-03T14:25:25.596Z] [WS-CLEANUP] Deferred wipeout is used...
+[2026-11-03T14:25:25.599Z] [WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

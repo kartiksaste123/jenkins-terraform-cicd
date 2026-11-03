@@ -1,0 +1,66 @@
+# Jenkins build #3 - pytest with JUnit XML + coverage
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/3/console
+
+===== Stage: Unit Tests (pytest) =====
+[19:50:25 IST] + . .venv/bin/activate
+[19:50:25 IST] + deactivate nondestructive
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + hash -r
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + unset VIRTUAL_ENV
+[19:50:25 IST] + unset VIRTUAL_ENV_PROMPT
+[19:50:25 IST] + [ ! nondestructive = nondestructive ]
+[19:50:25 IST] + uname
+[19:50:25 IST] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[19:50:25 IST] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:50:25 IST] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[19:50:25 IST] + export PATH
+[19:50:25 IST] + VIRTUAL_ENV_PROMPT=.venv
+[19:50:25 IST] + export VIRTUAL_ENV_PROMPT
+[19:50:25 IST] + [ -n  ]
+[19:50:25 IST] + [ -z  ]
+[19:50:25 IST] + _OLD_VIRTUAL_PS1=$ 
+[19:50:25 IST] + PS1=(.venv) $ 
+[19:50:25 IST] + export PS1
+[19:50:25 IST] + hash -r
+[19:50:25 IST] + mkdir -p reports
+[19:50:25 IST] + pytest --junitxml=reports/junit.xml --cov=app --cov-report=term-missing --cov-report=xml:reports/coverage.xml --cov-report=html:reports/coverage-html
+[19:50:25 IST] ============================= test session starts ==============================
+[19:50:25 IST] platform linux -- Python 3.13.5, pytest-8.3.3, pluggy-1.7.0 -- /var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin/python3
+[19:50:25 IST] cachedir: .pytest_cache
+[19:50:25 IST] rootdir: /var/jenkins_home/workspace/jenkins-terraform-cicd
+[19:50:25 IST] configfile: pytest.ini
+[19:50:25 IST] testpaths: tests
+[19:50:25 IST] plugins: cov-5.0.0
+[19:50:25 IST] collecting ... collected 8 items
+[19:50:25 IST] 
+[19:50:25 IST] tests/test_app.py::test_index_page PASSED                                [ 12%]
+[19:50:25 IST] tests/test_app.py::test_health PASSED                                    [ 25%]
+[19:50:25 IST] tests/test_app.py::test_info PASSED                                      [ 37%]
+[19:50:25 IST] tests/test_app.py::test_list_tasks PASSED                                [ 50%]
+[19:50:25 IST] tests/test_app.py::test_get_task_found_and_missing PASSED                [ 62%]
+[19:50:25 IST] tests/test_app.py::test_create_task PASSED                               [ 75%]
+[19:50:25 IST] tests/test_app.py::test_create_task_requires_title PASSED                [ 87%]
+[19:50:25 IST] tests/test_app.py::test_complete_task PASSED                             [100%]
+[19:50:25 IST] 
+[19:50:25 IST] - generated xml file: /var/jenkins_home/workspace/jenkins-terraform-cicd/reports/junit.xml -
+[19:50:25 IST] 
+[19:50:25 IST] ---------- coverage: platform linux, python 3.13.5-final-0 -----------
+[19:50:25 IST] Name              Stmts   Miss  Cover   Missing
+[19:50:25 IST] -----------------------------------------------
+[19:50:25 IST] app/__init__.py       0      0   100%
+[19:50:25 IST] app/app.py           46      1    98%   87
+[19:50:25 IST] -----------------------------------------------
+[19:50:25 IST] TOTAL                46      1    98%
+[19:50:25 IST] Coverage HTML written to dir reports/coverage-html
+[19:50:25 IST] Coverage XML written to file reports/coverage.xml
+[19:50:25 IST] 
+[19:50:25 IST] ============================== 8 passed in 0.19s ===============================
+Post stage
+[19:50:25 IST] Recording test results
+[19:50:25 IST] [Checks API] No suitable checks publisher found.
+[19:50:25 IST] [htmlpublisher] Archiving HTML reports...
+[19:50:25 IST] [htmlpublisher] Archiving at BUILD level /var/jenkins_home/workspace/jenkins-terraform-cicd/reports/coverage-html to Coverage_20Report
+[19:50:25 IST] [htmlpublisher] Copying recursive using current thread
+

@@ -1,0 +1,37 @@
+# Jenkins build #3 - terraform init / fmt -check / validate
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/3/console
+
+===== Stage: Terraform Init =====
+[19:50:30 IST] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[19:50:31 IST] + terraform version
+[19:50:31 IST] Terraform v1.9.8
+[19:50:31 IST] on linux_amd64
+[19:50:31 IST] + provider registry.terraform.io/hashicorp/aws v5.100.0
+[19:50:31 IST] 
+[19:50:31 IST] Your version of Terraform is out of date! The latest version
+[19:50:31 IST] is 1.17.1. You can update by downloading from https://www.terraform.io/downloads.html
+[19:50:31 IST] + dirname /var/jenkins_home/tfstate/jenkins-terraform-cicd/terraform.tfstate
+[19:50:31 IST] + mkdir -p /var/jenkins_home/tfstate/jenkins-terraform-cicd /var/jenkins_home/.terraform.d/plugin-cache
+[19:50:31 IST] + terraform init -input=false -no-color -backend-config=path=/var/jenkins_home/tfstate/jenkins-terraform-cicd/terraform.tfstate
+[19:50:31 IST] Initializing the backend...
+[19:50:31 IST] 
+[19:50:31 IST] Successfully configured the backend "local"! Terraform will automatically
+[19:50:31 IST] use this backend unless the backend configuration changes.
+[19:50:31 IST] Initializing provider plugins...
+[19:50:31 IST] - Reusing previous version of hashicorp/aws from the dependency lock file
+[19:50:32 IST] - Using hashicorp/aws v5.100.0 from the shared cache directory
+[19:50:33 IST] 
+[19:50:33 IST] Terraform has been successfully initialized!
+
+===== Stage: Terraform Fmt Check =====
+[19:50:33 IST] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[19:50:33 IST] + terraform fmt -check -recursive -diff -no-color
+[19:50:33 IST] + echo terraform fmt: all files correctly formatted
+[19:50:33 IST] terraform fmt: all files correctly formatted
+
+===== Stage: Terraform Validate =====
+[19:50:33 IST] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[19:50:34 IST] + terraform validate -no-color
+[19:50:35 IST] Success! The configuration is valid.
+[19:50:35 IST] 
+

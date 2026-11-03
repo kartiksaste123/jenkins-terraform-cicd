@@ -1,0 +1,206 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ aws sts get-caller-identity --query '{Account:Account,Arn:Arn}' --output table && terraform -chdir=terraform plan -input=false -no-color -out=tfplan
+-----------------------------------------------------------------
+|                       GetCallerIdentity                       |
++---------------+-----------------------------------------------+
+|    Account    |                      Arn                      |
++---------------+-----------------------------------------------+
+|  823564785205 |  arn:aws:iam::823564785205:user/terraform-ci  |
++---------------+-----------------------------------------------+
+data.aws_ami.amazon_linux_2023: Reading...
+data.aws_vpc.default: Reading...
+data.aws_ami.amazon_linux_2023: Read complete after 2s [id=ami-00531e78dd10fb3be]
+data.aws_vpc.default: Read complete after 2s [id=vpc-0dee03f3a5eafb8f2]
+data.aws_subnets.default: Reading...
+data.aws_subnets.default: Read complete after 0s [id=ap-south-1]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.app will be created
+  + resource "aws_instance" "app" {
+      + ami                                  = "ami-00531e78dd10fb3be"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = true
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + enable_primary_ipv6                  = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t3.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = "subnet-0095f703c6d1d6394"
+      + tags                                 = {
+          + "Name" = "jenkins-terraform-cicd-dev-app"
+        }
+      + tags_all                             = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "jenkins-terraform-cicd-dev-app"
+          + "Owner"       = "Kartik Saste"
+          + "Pipeline"    = "Jenkins"
+          + "Project"     = "jenkins-terraform-cicd"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = "37e23b9b47023ebe15aed1af8f14dd025fe01e5e"
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = true
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification (known after apply)
+
+      + cpu_options (known after apply)
+
+      + ebs_block_device (known after apply)
+
+      + enclave_options (known after apply)
+
+      + ephemeral_block_device (known after apply)
+
+      + instance_market_options (known after apply)
+
+      + maintenance_options (known after apply)
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_protocol_ipv6          = "disabled"
+          + http_put_response_hop_limit = 2
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface (known after apply)
+
+      + private_dns_name_options (known after apply)
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = true
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags_all              = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 8
+          + volume_type           = "gp3"
+        }
+    }
+
+  # aws_security_group.app will be created
+  + resource "aws_security_group" "app" {
+      + arn                    = (known after apply)
+      + description            = "Allow SSH from admin CIDR and HTTP/Flask from anywhere"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "All outbound traffic"
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Flask app port"
+              + from_port        = 5000
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 5000
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "HTTP"
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+          + {
+              + cidr_blocks      = [
+                  + "100.22.120.45/32",
+                ]
+              + description      = "SSH"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "jenkins-terraform-cicd-dev-sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "jenkins-terraform-cicd-dev-sg"
+        }
+      + tags_all               = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "jenkins-terraform-cicd-dev-sg"
+          + "Owner"       = "Kartik Saste"
+          + "Pipeline"    = "Jenkins"
+          + "Project"     = "jenkins-terraform-cicd"
+        }
+      + vpc_id                 = "vpc-0dee03f3a5eafb8f2"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + ami_id            = "ami-00531e78dd10fb3be"
+  + app_url           = (known after apply)
+  + instance_id       = (known after apply)
+  + public_dns        = (known after apply)
+  + public_ip         = (known after apply)
+  + security_group_id = (known after apply)
+

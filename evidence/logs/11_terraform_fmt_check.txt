@@ -1,0 +1,3 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ terraform -chdir=terraform fmt -check -recursive -diff && echo 'terraform fmt -check: all files formatted correctly (exit code 0)'
+terraform fmt -check: all files formatted correctly (exit code 0)
+

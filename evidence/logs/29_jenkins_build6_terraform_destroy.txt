@@ -1,0 +1,27 @@
+# Jenkins build #6 (DESTROY=true) - terraform plan -destroy + apply removes everything
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/6/console
+
+===== Stage: Terraform Plan =====
+[19:59:50 IST] aws_security_group.app: Refreshing state... [id=sg-0fe464e81f91c0621]
+[19:59:50 IST] aws_instance.app: Refreshing state... [id=i-085d9d4631189d6c1]
+[19:59:56 IST]   # aws_instance.app will be destroyed
+[19:59:56 IST]   # aws_security_group.app will be destroyed
+[19:59:56 IST] Plan: 0 to add, 0 to change, 2 to destroy.
+
+===== Stage: Terraform Destroy =====
+[19:59:57 IST] Masking supported pattern matches of $AWS_SECRET_ACCESS_KEY
+[19:59:57 IST] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[20:00:00 IST] aws_instance.app: Destroying... [id=i-085d9d4631189d6c1]
+[20:00:10 IST] aws_instance.app: Still destroying... [id=i-085d9d4631189d6c1, 10s elapsed]
+[20:00:20 IST] aws_instance.app: Still destroying... [id=i-085d9d4631189d6c1, 20s elapsed]
+[20:00:30 IST] aws_instance.app: Still destroying... [id=i-085d9d4631189d6c1, 30s elapsed]
+[20:00:33 IST] aws_instance.app: Destruction complete after 32s
+[20:00:33 IST] aws_security_group.app: Destroying... [id=sg-0fe464e81f91c0621]
+[20:00:34 IST] aws_security_group.app: Destruction complete after 1s
+[20:00:34 IST] 
+[20:00:34 IST] Apply complete! Resources: 0 added, 0 changed, 2 destroyed.
+[20:00:34 IST] + terraform state list
+[20:00:34 IST] + wc -l
+[20:00:34 IST] + xargs -I{} echo Resources left in state: {}
+[20:00:34 IST] Resources left in state: 0
+

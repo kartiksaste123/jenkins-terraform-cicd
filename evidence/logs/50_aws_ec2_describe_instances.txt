@@ -1,0 +1,30 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ aws ec2 describe-instances --region ap-south-1 --filters Name=tag:Project,Values=jenkins-terraform-cicd --query 'Reservations[].Instances[].{ID:InstanceId,Type:InstanceType,State:State.Name,AZ:Placement.AvailabilityZone,PublicIP:PublicIpAddress,AMI:ImageId,IMDSv2:MetadataOptions.HttpTokens,Name:Tags[?Key==`Name`]|[0].Value}' --output table; aws ec2 describe-volumes --region ap-south-1 --filters Name=attachment.instance-id,Values=i-085d9d4631189d6c1 --query 'Volumes[].{Volume:VolumeId,Type:VolumeType,SizeGiB:Size,Encrypted:Encrypted}' --output table; aws ec2 describe-security-groups --region ap-south-1 --group-ids sg-0fe464e81f91c0621 --query 'SecurityGroups[].IpPermissions[].{Port:FromPort,CIDR:IpRanges[0].CidrIp,Desc:IpRanges[0].Description}' --output table
+------------------------------------------------
+|               DescribeInstances              |
++-----------+----------------------------------+
+|  AMI      |  ami-00531e78dd10fb3be           |
+|  AZ       |  ap-south-1a                     |
+|  ID       |  i-085d9d4631189d6c1             |
+|  IMDSv2   |  required                        |
+|  Name     |  jenkins-terraform-cicd-dev-app  |
+|  PublicIP |  65.0.100.95                     |
+|  State    |  running                         |
+|  Type     |  t3.micro                        |
++-----------+----------------------------------+
+-----------------------------------------------------------
+|                     DescribeVolumes                     |
++-----------+----------+-------+--------------------------+
+| Encrypted | SizeGiB  | Type  |         Volume           |
++-----------+----------+-------+--------------------------+
+|  True     |  8       |  gp3  |  vol-0c9676880ec08878d   |
++-----------+----------+-------+--------------------------+
+------------------------------------------------
+|            DescribeSecurityGroups            |
++-------------------+------------------+-------+
+|       CIDR        |      Desc        | Port  |
++-------------------+------------------+-------+
+|  0.0.0.0/0        |  HTTP            |  80   |
+|  100.22.120.45/32 |  SSH             |  22   |
+|  0.0.0.0/0        |  Flask app port  |  5000 |
++-------------------+------------------+-------+
+

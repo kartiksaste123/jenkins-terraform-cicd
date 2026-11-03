@@ -1,0 +1,659 @@
+Started by an SCM change
+Started by user Kartik Saste
+Obtained Jenkinsfile from git https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/jenkins-terraform-cicd
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] timeout
+[2026-11-03T14:15:16.403Z] Timeout set to expire in 45 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+[2026-11-03T14:15:16.524Z] Selected Git installation does not exist. Using Default
+[2026-11-03T14:15:16.524Z] The recommended git tool is: NONE
+[2026-11-03T14:15:16.524Z] No credentials specified
+[2026-11-03T14:15:16.525Z] Cloning the remote Git repository
+[2026-11-03T14:15:16.526Z] Cloning repository https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:15:16.526Z]  > git init /var/jenkins_home/workspace/jenkins-terraform-cicd # timeout=10
+[2026-11-03T14:15:16.608Z] Fetching upstream changes from https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:15:16.608Z]  > git --version # timeout=10
+[2026-11-03T14:15:16.612Z]  > git --version # 'git version 2.47.3'
+[2026-11-03T14:15:16.612Z]  > git fetch --tags --force --progress -- https://github.com/kartiksaste123/jenkins-terraform-cicd.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-11-03T14:15:19.179Z]  > git config remote.origin.url https://github.com/kartiksaste123/jenkins-terraform-cicd.git # timeout=10
+[2026-11-03T14:15:19.183Z]  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-11-03T14:15:19.189Z] Avoid second fetch
+[2026-11-03T14:15:19.191Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-11-03T14:15:19.197Z] Checking out Revision 960d2a0f6b674ccca0de873cdfe76288acc16203 (refs/remotes/origin/main)
+[2026-11-03T14:15:19.198Z]  > git config core.sparsecheckout # timeout=10
+[2026-11-03T14:15:19.204Z]  > git checkout -f 960d2a0f6b674ccca0de873cdfe76288acc16203 # timeout=10
+[2026-11-03T14:15:19.214Z] Commit message: "Use default Docker bridge for Jenkins and smoke-test the container by IP"
+[2026-11-03T14:15:19.215Z] First time build. Skipping changelog.
+[Pipeline] sh
+[2026-11-03T14:15:19.503Z] + git config --get remote.origin.url
+[2026-11-03T14:15:19.504Z] + echo Repository : https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:15:19.504Z] Repository : https://github.com/kartiksaste123/jenkins-terraform-cicd.git
+[2026-11-03T14:15:19.504Z] + echo Branch     : main
+[2026-11-03T14:15:19.504Z] Branch     : main
+[2026-11-03T14:15:19.504Z] + git log -1 --pretty=format:Commit     : %H%nAuthor     : %an <%ae>%nDate       : %ad%nMessage    : %s%n
+[2026-11-03T14:15:19.504Z] Commit     : 960d2a0f6b674ccca0de873cdfe76288acc16203
+[2026-11-03T14:15:19.504Z] Author     : Kartik Saste <kartiksaste4@gmail.com>
+[2026-11-03T14:15:19.504Z] Date       : Tue Nov 3 19:44:32 2026 +0530
+[2026-11-03T14:15:19.504Z] Message    : Use default Docker bridge for Jenkins and smoke-test the container by IP
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Setup Python venv)
+[Pipeline] sh
+[2026-11-03T14:15:19.915Z] + python3 --version
+[2026-11-03T14:15:19.915Z] Python 3.13.5
+[2026-11-03T14:15:19.915Z] + python3 -m venv .venv
+[2026-11-03T14:15:21.779Z] + . .venv/bin/activate
+[2026-11-03T14:15:21.779Z] + deactivate nondestructive
+[2026-11-03T14:15:21.779Z] + [ -n  ]
+[2026-11-03T14:15:21.779Z] + [ -n  ]
+[2026-11-03T14:15:21.779Z] + hash -r
+[2026-11-03T14:15:21.779Z] + [ -n  ]
+[2026-11-03T14:15:21.779Z] + unset VIRTUAL_ENV
+[2026-11-03T14:15:21.779Z] + unset VIRTUAL_ENV_PROMPT
+[2026-11-03T14:15:21.779Z] + [ ! nondestructive = nondestructive ]
+[2026-11-03T14:15:21.779Z] + uname
+[2026-11-03T14:15:21.779Z] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[2026-11-03T14:15:21.779Z] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:15:21.779Z] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:15:21.779Z] + export PATH
+[2026-11-03T14:15:21.779Z] + VIRTUAL_ENV_PROMPT=.venv
+[2026-11-03T14:15:21.779Z] + export VIRTUAL_ENV_PROMPT
+[2026-11-03T14:15:21.779Z] + [ -n  ]
+[2026-11-03T14:15:21.779Z] + [ -z  ]
+[2026-11-03T14:15:21.779Z] + _OLD_VIRTUAL_PS1=$ 
+[2026-11-03T14:15:21.779Z] + PS1=(.venv) $ 
+[2026-11-03T14:15:21.779Z] + export PS1
+[2026-11-03T14:15:21.779Z] + hash -r
+[2026-11-03T14:15:21.779Z] + pip install --quiet --upgrade pip
+[2026-11-03T14:15:23.124Z] + pip install --quiet -r requirements-dev.txt
+[2026-11-03T14:15:25.609Z] + pip freeze
+[2026-11-03T14:15:25.610Z] + grep -iE flask|pytest|flake8|gunicorn
+[2026-11-03T14:15:25.861Z] flake8==7.1.1
+[2026-11-03T14:15:25.861Z] Flask==3.0.3
+[2026-11-03T14:15:25.861Z] gunicorn==23.0.0
+[2026-11-03T14:15:25.861Z] pytest==8.3.3
+[2026-11-03T14:15:25.861Z] pytest-cov==5.0.0
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Lint (flake8))
+[Pipeline] sh
+[2026-11-03T14:15:26.173Z] + . .venv/bin/activate
+[2026-11-03T14:15:26.173Z] + deactivate nondestructive
+[2026-11-03T14:15:26.173Z] + [ -n  ]
+[2026-11-03T14:15:26.173Z] + [ -n  ]
+[2026-11-03T14:15:26.173Z] + hash -r
+[2026-11-03T14:15:26.173Z] + [ -n  ]
+[2026-11-03T14:15:26.173Z] + unset VIRTUAL_ENV
+[2026-11-03T14:15:26.173Z] + unset VIRTUAL_ENV_PROMPT
+[2026-11-03T14:15:26.173Z] + [ ! nondestructive = nondestructive ]
+[2026-11-03T14:15:26.173Z] + uname
+[2026-11-03T14:15:26.173Z] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[2026-11-03T14:15:26.173Z] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:15:26.173Z] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:15:26.173Z] + export PATH
+[2026-11-03T14:15:26.173Z] + VIRTUAL_ENV_PROMPT=.venv
+[2026-11-03T14:15:26.173Z] + export VIRTUAL_ENV_PROMPT
+[2026-11-03T14:15:26.173Z] + [ -n  ]
+[2026-11-03T14:15:26.173Z] + [ -z  ]
+[2026-11-03T14:15:26.173Z] + _OLD_VIRTUAL_PS1=$ 
+[2026-11-03T14:15:26.173Z] + PS1=(.venv) $ 
+[2026-11-03T14:15:26.173Z] + export PS1
+[2026-11-03T14:15:26.173Z] + hash -r
+[2026-11-03T14:15:26.173Z] + flake8 --count --statistics
+[2026-11-03T14:15:26.173Z] 0
+[2026-11-03T14:15:26.173Z] + echo flake8: no issues found
+[2026-11-03T14:15:26.173Z] flake8: no issues found
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit Tests (pytest))
+[Pipeline] sh
+[2026-11-03T14:15:26.487Z] + . .venv/bin/activate
+[2026-11-03T14:15:26.487Z] + deactivate nondestructive
+[2026-11-03T14:15:26.487Z] + [ -n  ]
+[2026-11-03T14:15:26.487Z] + [ -n  ]
+[2026-11-03T14:15:26.487Z] + hash -r
+[2026-11-03T14:15:26.487Z] + [ -n  ]
+[2026-11-03T14:15:26.487Z] + unset VIRTUAL_ENV
+[2026-11-03T14:15:26.487Z] + unset VIRTUAL_ENV_PROMPT
+[2026-11-03T14:15:26.487Z] + [ ! nondestructive = nondestructive ]
+[2026-11-03T14:15:26.487Z] + uname
+[2026-11-03T14:15:26.487Z] + export VIRTUAL_ENV=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv
+[2026-11-03T14:15:26.487Z] + _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:15:26.487Z] + PATH=/var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[2026-11-03T14:15:26.487Z] + export PATH
+[2026-11-03T14:15:26.487Z] + VIRTUAL_ENV_PROMPT=.venv
+[2026-11-03T14:15:26.487Z] + export VIRTUAL_ENV_PROMPT
+[2026-11-03T14:15:26.487Z] + [ -n  ]
+[2026-11-03T14:15:26.487Z] + [ -z  ]
+[2026-11-03T14:15:26.487Z] + _OLD_VIRTUAL_PS1=$ 
+[2026-11-03T14:15:26.487Z] + PS1=(.venv) $ 
+[2026-11-03T14:15:26.487Z] + export PS1
+[2026-11-03T14:15:26.487Z] + hash -r
+[2026-11-03T14:15:26.487Z] + mkdir -p reports
+[2026-11-03T14:15:26.487Z] + pytest --junitxml=reports/junit.xml --cov=app --cov-report=term-missing --cov-report=xml:reports/coverage.xml --cov-report=html:reports/coverage-html
+[2026-11-03T14:15:26.487Z] ============================= test session starts ==============================
+[2026-11-03T14:15:26.487Z] platform linux -- Python 3.13.5, pytest-8.3.3, pluggy-1.7.0 -- /var/jenkins_home/workspace/jenkins-terraform-cicd/.venv/bin/python3
+[2026-11-03T14:15:26.487Z] cachedir: .pytest_cache
+[2026-11-03T14:15:26.487Z] rootdir: /var/jenkins_home/workspace/jenkins-terraform-cicd
+[2026-11-03T14:15:26.487Z] configfile: pytest.ini
+[2026-11-03T14:15:26.487Z] testpaths: tests
+[2026-11-03T14:15:26.487Z] plugins: cov-5.0.0
+[2026-11-03T14:15:26.738Z] collecting ... collected 8 items
+[2026-11-03T14:15:26.738Z] 
+[2026-11-03T14:15:26.738Z] tests/test_app.py::test_index_page PASSED                                [ 12%]
+[2026-11-03T14:15:26.738Z] tests/test_app.py::test_health PASSED                                    [ 25%]
+[2026-11-03T14:15:26.738Z] tests/test_app.py::test_info PASSED                                      [ 37%]
+[2026-11-03T14:15:26.738Z] tests/test_app.py::test_list_tasks PASSED                                [ 50%]
+[2026-11-03T14:15:26.738Z] tests/test_app.py::test_get_task_found_and_missing PASSED                [ 62%]
+[2026-11-03T14:15:26.738Z] tests/test_app.py::test_create_task PASSED                               [ 75%]
+[2026-11-03T14:15:26.739Z] tests/test_app.py::test_create_task_requires_title PASSED                [ 87%]
+[2026-11-03T14:15:26.739Z] tests/test_app.py::test_complete_task PASSED                             [100%]
+[2026-11-03T14:15:26.739Z] 
+[2026-11-03T14:15:26.739Z] - generated xml file: /var/jenkins_home/workspace/jenkins-terraform-cicd/reports/junit.xml -
+[2026-11-03T14:15:26.739Z] 
+[2026-11-03T14:15:26.739Z] ---------- coverage: platform linux, python 3.13.5-final-0 -----------
+[2026-11-03T14:15:26.739Z] Name              Stmts   Miss  Cover   Missing
+[2026-11-03T14:15:26.739Z] -----------------------------------------------
+[2026-11-03T14:15:26.739Z] app/__init__.py       0      0   100%
+[2026-11-03T14:15:26.739Z] app/app.py           46      1    98%   87
+[2026-11-03T14:15:26.739Z] -----------------------------------------------
+[2026-11-03T14:15:26.739Z] TOTAL                46      1    98%
+[2026-11-03T14:15:26.739Z] Coverage HTML written to dir reports/coverage-html
+[2026-11-03T14:15:26.739Z] Coverage XML written to file reports/coverage.xml
+[2026-11-03T14:15:26.739Z] 
+[2026-11-03T14:15:26.739Z] ============================== 8 passed in 0.23s ===============================
+Post stage
+[Pipeline] junit
+[2026-11-03T14:15:26.823Z] Recording test results
+[2026-11-03T14:15:26.894Z] [Checks API] No suitable checks publisher found.
+[Pipeline] publishHTML
+[2026-11-03T14:15:26.904Z] [htmlpublisher] Archiving HTML reports...
+[2026-11-03T14:15:26.905Z] [htmlpublisher] Archiving at BUILD level /var/jenkins_home/workspace/jenkins-terraform-cicd/reports/coverage-html to Coverage_20Report
+[2026-11-03T14:15:26.906Z] [htmlpublisher] Copying recursive using current thread
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] sh
+[2026-11-03T14:15:27.243Z] + docker build --build-arg BUILD_NUMBER=1 -t student-task-tracker:1 -t student-task-tracker:latest .
+[2026-11-03T14:15:27.243Z] DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+[2026-11-03T14:15:27.243Z]             Install the buildx component to build images with BuildKit:
+[2026-11-03T14:15:27.243Z]             https://docs.docker.com/go/buildx/
+[2026-11-03T14:15:27.243Z] 
+[2026-11-03T14:15:27.243Z] Sending build context to Docker daemon  92.67kB[2026-11-03T14:15:27.243Z] 
+[2026-11-03T14:15:27.243Z] Step 1/14 : FROM python:3.12-slim
+[2026-11-03T14:15:28.155Z] 3.12-slim: Pulling from library/python
+[2026-11-03T14:15:28.155Z] 6fc242d221a6: Already exists
+[2026-11-03T14:15:28.155Z] 3eb771151506: Already exists
+[2026-11-03T14:15:28.155Z] f574edac59d9: Already exists
+[2026-11-03T14:15:28.155Z] acca7542dfc7: Already exists
+[2026-11-03T14:15:28.406Z] Digest: sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30
+[2026-11-03T14:15:28.406Z] Status: Downloaded newer image for python:3.12-slim
+[2026-11-03T14:15:28.406Z]  ---> ae4e8b7c575f
+[2026-11-03T14:15:28.406Z] Step 2/14 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PORT=5000
+[2026-11-03T14:15:28.406Z]  ---> Running in c26bf8111b9e
+[2026-11-03T14:15:28.406Z]  ---> Removed intermediate container c26bf8111b9e
+[2026-11-03T14:15:28.406Z]  ---> c89534638748
+[2026-11-03T14:15:28.406Z] Step 3/14 : WORKDIR /app
+[2026-11-03T14:15:28.406Z]  ---> Running in 31499e7575b6
+[2026-11-03T14:15:28.657Z]  ---> Removed intermediate container 31499e7575b6
+[2026-11-03T14:15:28.657Z]  ---> 63ab159b32d8
+[2026-11-03T14:15:28.657Z] Step 4/14 : COPY requirements.txt .
+[2026-11-03T14:15:28.657Z]  ---> b526f4a19ba3
+[2026-11-03T14:15:28.657Z] Step 5/14 : RUN pip install --no-cache-dir -r requirements.txt
+[2026-11-03T14:15:28.657Z]  ---> Running in 633c3a27b8dd
+[2026-11-03T14:15:30.001Z] Collecting Flask==3.0.3 (from -r requirements.txt (line 1))
+[2026-11-03T14:15:30.001Z]   Downloading flask-3.0.3-py3-none-any.whl.metadata (3.2 kB)
+[2026-11-03T14:15:30.001Z] Collecting gunicorn==23.0.0 (from -r requirements.txt (line 2))
+[2026-11-03T14:15:30.002Z]   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[2026-11-03T14:15:30.002Z] Collecting Werkzeug>=3.0.0 (from Flask==3.0.3->-r requirements.txt (line 1))
+[2026-11-03T14:15:30.002Z]   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+[2026-11-03T14:15:30.002Z] Collecting Jinja2>=3.1.2 (from Flask==3.0.3->-r requirements.txt (line 1))
+[2026-11-03T14:15:30.002Z]   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[2026-11-03T14:15:30.002Z] Collecting itsdangerous>=2.1.2 (from Flask==3.0.3->-r requirements.txt (line 1))
+[2026-11-03T14:15:30.002Z]   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+[2026-11-03T14:15:30.252Z] Collecting click>=8.1.3 (from Flask==3.0.3->-r requirements.txt (line 1))
+[2026-11-03T14:15:30.253Z]   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-11-03T14:15:30.253Z] Collecting blinker>=1.6.2 (from Flask==3.0.3->-r requirements.txt (line 1))
+[2026-11-03T14:15:30.253Z]   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+[2026-11-03T14:15:30.253Z] Collecting packaging (from gunicorn==23.0.0->-r requirements.txt (line 2))
+[2026-11-03T14:15:30.253Z]   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[2026-11-03T14:15:30.253Z] Collecting MarkupSafe>=2.0 (from Jinja2>=3.1.2->Flask==3.0.3->-r requirements.txt (line 1))
+[2026-11-03T14:15:30.253Z]   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+[2026-11-03T14:15:30.253Z] Downloading flask-3.0.3-py3-none-any.whl (101 kB)
+[2026-11-03T14:15:30.253Z] Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[2026-11-03T14:15:30.253Z] Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+[2026-11-03T14:15:30.253Z] Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[2026-11-03T14:15:30.253Z] Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+[2026-11-03T14:15:30.253Z] Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[2026-11-03T14:15:30.253Z] Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+[2026-11-03T14:15:30.253Z] Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[2026-11-03T14:15:30.503Z] Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+[2026-11-03T14:15:30.504Z] Installing collected packages: packaging, MarkupSafe, itsdangerous, click, blinker, Werkzeug, Jinja2, gunicorn, Flask
+[2026-11-03T14:15:31.055Z] Successfully installed Flask-3.0.3 Jinja2-3.1.6 MarkupSafe-3.0.4 Werkzeug-3.1.9 blinker-1.9.0 click-8.5.0 gunicorn-23.0.0 itsdangerous-2.2.0 packaging-26.3
+[2026-11-03T14:15:31.055Z] [91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[2026-11-03T14:15:31.055Z] [0m[91m
+[2026-11-03T14:15:31.055Z] [notice] A new release of pip is available: 25.0.1 -> 26.3
+[2026-11-03T14:15:31.055Z] [notice] To update, run: pip install --upgrade pip
+[2026-11-03T14:15:31.306Z] [0m ---> Removed intermediate container 633c3a27b8dd
+[2026-11-03T14:15:31.306Z]  ---> dae1eca1ea09
+[2026-11-03T14:15:31.306Z] Step 6/14 : COPY app/ ./app/
+[2026-11-03T14:15:31.306Z]  ---> da64c212e484
+[2026-11-03T14:15:31.306Z] Step 7/14 : RUN useradd --create-home appuser
+[2026-11-03T14:15:31.306Z]  ---> Running in d0c866359d3e
+[2026-11-03T14:15:31.556Z]  ---> Removed intermediate container d0c866359d3e
+[2026-11-03T14:15:31.557Z]  ---> ec58994d1988
+[2026-11-03T14:15:31.557Z] Step 8/14 : USER appuser
+[2026-11-03T14:15:31.557Z]  ---> Running in 58b6bdbe7705
+[2026-11-03T14:15:31.557Z]  ---> Removed intermediate container 58b6bdbe7705
+[2026-11-03T14:15:31.557Z]  ---> fafc6a9d5892
+[2026-11-03T14:15:31.557Z] Step 9/14 : ARG BUILD_NUMBER=local
+[2026-11-03T14:15:31.557Z]  ---> Running in 8d07a58485ca
+[2026-11-03T14:15:31.557Z]  ---> Removed intermediate container 8d07a58485ca
+[2026-11-03T14:15:31.557Z]  ---> 460aff3a0ce2
+[2026-11-03T14:15:31.557Z] Step 10/14 : ENV BUILD_NUMBER=${BUILD_NUMBER}
+[2026-11-03T14:15:31.557Z]  ---> Running in dd30f275fcb7
+[2026-11-03T14:15:31.807Z]  ---> Removed intermediate container dd30f275fcb7
+[2026-11-03T14:15:31.807Z]  ---> ca9d362100d0
+[2026-11-03T14:15:31.807Z] Step 11/14 : LABEL org.opencontainers.image.title="student-task-tracker"       org.opencontainers.image.authors="Kartik Saste"       org.opencontainers.image.source="https://github.com/kartiksaste123/jenkins-terraform-cicd"
+[2026-11-03T14:15:31.808Z]  ---> Running in 8ee877323804
+[2026-11-03T14:15:31.808Z]  ---> Removed intermediate container 8ee877323804
+[2026-11-03T14:15:31.808Z]  ---> 048c770a6ca8
+[2026-11-03T14:15:31.808Z] Step 12/14 : EXPOSE 5000
+[2026-11-03T14:15:31.808Z]  ---> Running in 941eeed8676f
+[2026-11-03T14:15:31.808Z]  ---> Removed intermediate container 941eeed8676f
+[2026-11-03T14:15:31.808Z]  ---> 0e1ce958b6c4
+[2026-11-03T14:15:31.808Z] Step 13/14 : HEALTHCHECK --interval=30s --timeout=3s CMD python -c "import urllib.request;urllib.request.urlopen('http://localhost:5000/health')" || exit 1
+[2026-11-03T14:15:31.808Z]  ---> Running in ae54425868bd
+[2026-11-03T14:15:31.808Z]  ---> Removed intermediate container ae54425868bd
+[2026-11-03T14:15:31.808Z]  ---> b4fbfca67573
+[2026-11-03T14:15:31.808Z] Step 14/14 : CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "app.app:app"]
+[2026-11-03T14:15:31.808Z]  ---> Running in 797f1416cf46
+[2026-11-03T14:15:31.808Z]  ---> Removed intermediate container 797f1416cf46
+[2026-11-03T14:15:31.808Z]  ---> ff6e4638220f
+[2026-11-03T14:15:31.808Z] Successfully built ff6e4638220f
+[2026-11-03T14:15:31.808Z] Successfully tagged student-task-tracker:1
+[2026-11-03T14:15:31.808Z] Successfully tagged student-task-tracker:latest
+[2026-11-03T14:15:31.808Z] + docker images student-task-tracker
+[2026-11-03T14:15:31.808Z] REPOSITORY             TAG       IMAGE ID       CREATED                  SIZE
+[2026-11-03T14:15:31.808Z] student-task-tracker   1         ff6e4638220f   Less than a second ago   126MB
+[2026-11-03T14:15:31.808Z] student-task-tracker   latest    ff6e4638220f   Less than a second ago   126MB
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Smoke Test Container)
+[Pipeline] sh
+[2026-11-03T14:15:32.122Z] + docker rm -f smoke-1
+[2026-11-03T14:15:32.123Z] + docker run -d --name smoke-1 student-task-tracker:1
+[2026-11-03T14:15:32.123Z] fbfac4fb173b81a1da960aa97a6fdc5511fa24ba4ef9b2a89b2c0cff190cf33f
+[2026-11-03T14:15:32.123Z] + docker inspect -f {{.NetworkSettings.IPAddress}} smoke-1
+[2026-11-03T14:15:32.123Z] + SMOKE_IP=172.17.0.4
+[2026-11-03T14:15:32.123Z] + echo Smoke-test container IP: 172.17.0.4
+[2026-11-03T14:15:32.123Z] Smoke-test container IP: 172.17.0.4
+[2026-11-03T14:15:32.123Z] + seq 1 20
+[2026-11-03T14:15:32.123Z] + curl -fsS http://172.17.0.4:5000/health
+[2026-11-03T14:15:32.123Z] curl: (7) Failed to connect to 172.17.0.4 port 5000 after 0 ms: Could not connect to server
+[2026-11-03T14:15:32.123Z] + [ 1 -eq 20 ]
+[2026-11-03T14:15:32.123Z] + sleep 1
+[2026-11-03T14:15:33.468Z] + curl -fsS http://172.17.0.4:5000/health
+[2026-11-03T14:15:33.468Z] {"status":"ok","time":"2026-11-03T14:15:33.122274+00:00"}
+[2026-11-03T14:15:33.468Z] + echo
+[2026-11-03T14:15:33.468Z] 
+[2026-11-03T14:15:33.468Z] + echo Smoke test passed on attempt 2
+[2026-11-03T14:15:33.468Z] Smoke test passed on attempt 2
+[2026-11-03T14:15:33.468Z] + break
+[2026-11-03T14:15:33.468Z] + curl -fsS http://172.17.0.4:5000/api/info
+[2026-11-03T14:15:33.468Z] {"app":"student-task-tracker","author":"Kartik Saste","build":"1","hostname":"fbfac4fb173b","version":"1.0.0"}
+[2026-11-03T14:15:33.468Z] + echo
+[2026-11-03T14:15:33.468Z] 
+Post stage
+[Pipeline] sh
+[2026-11-03T14:15:33.737Z] + docker rm -f smoke-1
+[2026-11-03T14:15:33.737Z] smoke-1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Init)
+[Pipeline] dir
+[2026-11-03T14:15:33.806Z] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[Pipeline] {
+[Pipeline] sh
+[2026-11-03T14:15:34.082Z] + terraform version
+[2026-11-03T14:15:34.082Z] There are some problems with the CLI configuration:
+[2026-11-03T14:15:34.082Z] ╷
+[2026-11-03T14:15:34.082Z] │ Error: The specified plugin cache dir /var/jenkins_home/.terraform.d/plugin-cache cannot be opened: stat /var/jenkins_home/.terraform.d/plugin-cache: no such file or directory
+[2026-11-03T14:15:34.082Z] │
+[2026-11-03T14:15:34.082Z] ╵
+[2026-11-03T14:15:34.082Z] 
+[2026-11-03T14:15:34.082Z] As a result of the above problems, Terraform may not behave as intended.
+[2026-11-03T14:15:34.082Z] 
+[2026-11-03T14:15:34.082Z] 
+[2026-11-03T14:15:34.333Z] Terraform v1.9.8
+[2026-11-03T14:15:34.333Z] on linux_amd64
+[2026-11-03T14:15:34.333Z] + provider registry.terraform.io/hashicorp/aws v5.100.0
+[2026-11-03T14:15:34.333Z] 
+[2026-11-03T14:15:34.333Z] Your version of Terraform is out of date! The latest version
+[2026-11-03T14:15:34.333Z] is 1.17.1. You can update by downloading from https://www.terraform.io/downloads.html
+[2026-11-03T14:15:34.333Z] + dirname /var/jenkins_home/tfstate/jenkins-terraform-cicd/terraform.tfstate
+[2026-11-03T14:15:34.333Z] + mkdir -p /var/jenkins_home/tfstate/jenkins-terraform-cicd /var/jenkins_home/.terraform.d/plugin-cache
+[2026-11-03T14:15:34.333Z] + terraform init -input=false -no-color -backend-config=path=/var/jenkins_home/tfstate/jenkins-terraform-cicd/terraform.tfstate
+[2026-11-03T14:15:34.333Z] Initializing the backend...
+[2026-11-03T14:15:34.333Z] 
+[2026-11-03T14:15:34.333Z] Successfully configured the backend "local"! Terraform will automatically
+[2026-11-03T14:15:34.333Z] use this backend unless the backend configuration changes.
+[2026-11-03T14:15:34.333Z] Initializing provider plugins...
+[2026-11-03T14:15:34.333Z] - Reusing previous version of hashicorp/aws from the dependency lock file
+[2026-11-03T14:15:34.584Z] - Installing hashicorp/aws v5.100.0...
+[2026-11-03T14:15:44.464Z] - Installed hashicorp/aws v5.100.0 (signed by HashiCorp)
+[2026-11-03T14:15:44.464Z] 
+[2026-11-03T14:15:44.464Z] Terraform has been successfully initialized!
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Fmt Check)
+[Pipeline] dir
+[2026-11-03T14:15:44.584Z] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[Pipeline] {
+[Pipeline] sh
+[2026-11-03T14:15:44.854Z] + terraform fmt -check -recursive -diff -no-color
+[2026-11-03T14:15:44.854Z] + echo terraform fmt: all files correctly formatted
+[2026-11-03T14:15:44.854Z] terraform fmt: all files correctly formatted
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Validate)
+[Pipeline] dir
+[2026-11-03T14:15:44.923Z] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[Pipeline] {
+[Pipeline] sh
+[2026-11-03T14:15:45.190Z] + terraform validate -no-color
+[2026-11-03T14:15:47.676Z] Success! The configuration is valid.
+[2026-11-03T14:15:47.676Z] 
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Plan)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2026-11-03T14:15:47.890Z] Masking supported pattern matches of $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] withCredentials
+[2026-11-03T14:15:47.936Z] Masking supported pattern matches of $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] dir
+[2026-11-03T14:15:47.953Z] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[Pipeline] {
+[Pipeline] sh
+[2026-11-03T14:15:51.216Z] data.aws_vpc.default: Reading...
+[2026-11-03T14:15:51.216Z] data.aws_ami.amazon_linux_2023: Reading...
+[2026-11-03T14:15:53.079Z] data.aws_ami.amazon_linux_2023: Read complete after 2s [id=ami-00531e78dd10fb3be]
+[2026-11-03T14:15:53.330Z] data.aws_vpc.default: Read complete after 2s [id=vpc-0dee03f3a5eafb8f2]
+[2026-11-03T14:15:53.330Z] data.aws_subnets.default: Reading...
+[2026-11-03T14:15:53.581Z] data.aws_subnets.default: Read complete after 1s [id=ap-south-1]
+[2026-11-03T14:15:53.831Z] 
+[2026-11-03T14:15:53.832Z] Terraform used the selected providers to generate the following execution
+[2026-11-03T14:15:53.832Z] plan. Resource actions are indicated with the following symbols:
+[2026-11-03T14:15:53.832Z]   + create
+[2026-11-03T14:15:53.832Z] 
+[2026-11-03T14:15:53.832Z] Terraform will perform the following actions:
+[2026-11-03T14:15:53.832Z] 
+[2026-11-03T14:15:53.832Z]   # aws_instance.app will be created
+[2026-11-03T14:15:53.832Z]   + resource "aws_instance" "app" {
+[2026-11-03T14:15:53.832Z]       + ami                                  = "ami-00531e78dd10fb3be"
+[2026-11-03T14:15:53.832Z]       + arn                                  = (known after apply)
+[2026-11-03T14:15:53.832Z]       + associate_public_ip_address          = true
+[2026-11-03T14:15:53.832Z]       + availability_zone                    = (known after apply)
+[2026-11-03T14:15:53.832Z]       + cpu_core_count                       = (known after apply)
+[2026-11-03T14:15:53.832Z]       + cpu_threads_per_core                 = (known after apply)
+[2026-11-03T14:15:53.832Z]       + disable_api_stop                     = (known after apply)
+[2026-11-03T14:15:53.832Z]       + disable_api_termination              = (known after apply)
+[2026-11-03T14:15:53.832Z]       + ebs_optimized                        = (known after apply)
+[2026-11-03T14:15:53.832Z]       + enable_primary_ipv6                  = (known after apply)
+[2026-11-03T14:15:53.832Z]       + get_password_data                    = false
+[2026-11-03T14:15:53.832Z]       + host_id                              = (known after apply)
+[2026-11-03T14:15:53.832Z]       + host_resource_group_arn              = (known after apply)
+[2026-11-03T14:15:53.832Z]       + iam_instance_profile                 = (known after apply)
+[2026-11-03T14:15:53.832Z]       + id                                   = (known after apply)
+[2026-11-03T14:15:53.832Z]       + instance_initiated_shutdown_behavior = (known after apply)
+[2026-11-03T14:15:53.832Z]       + instance_lifecycle                   = (known after apply)
+[2026-11-03T14:15:53.832Z]       + instance_state                       = (known after apply)
+[2026-11-03T14:15:53.832Z]       + instance_type                        = "t3.micro"
+[2026-11-03T14:15:53.832Z]       + ipv6_address_count                   = (known after apply)
+[2026-11-03T14:15:53.832Z]       + ipv6_addresses                       = (known after apply)
+[2026-11-03T14:15:53.832Z]       + key_name                             = (known after apply)
+[2026-11-03T14:15:53.832Z]       + monitoring                           = (known after apply)
+[2026-11-03T14:15:53.832Z]       + outpost_arn                          = (known after apply)
+[2026-11-03T14:15:53.832Z]       + password_data                        = (known after apply)
+[2026-11-03T14:15:53.832Z]       + placement_group                      = (known after apply)
+[2026-11-03T14:15:53.832Z]       + placement_partition_number           = (known after apply)
+[2026-11-03T14:15:53.832Z]       + primary_network_interface_id         = (known after apply)
+[2026-11-03T14:15:53.832Z]       + private_dns                          = (known after apply)
+[2026-11-03T14:15:53.832Z]       + private_ip                           = (known after apply)
+[2026-11-03T14:15:53.832Z]       + public_dns                           = (known after apply)
+[2026-11-03T14:15:53.832Z]       + public_ip                            = (known after apply)
+[2026-11-03T14:15:53.832Z]       + secondary_private_ips                = (known after apply)
+[2026-11-03T14:15:53.832Z]       + security_groups                      = (known after apply)
+[2026-11-03T14:15:53.832Z]       + source_dest_check                    = true
+[2026-11-03T14:15:53.832Z]       + spot_instance_request_id             = (known after apply)
+[2026-11-03T14:15:53.832Z]       + subnet_id                            = "subnet-0095f703c6d1d6394"
+[2026-11-03T14:15:53.832Z]       + tags                                 = {
+[2026-11-03T14:15:53.832Z]           + "Name" = "jenkins-terraform-cicd-dev-app"
+[2026-11-03T14:15:53.832Z]         }
+[2026-11-03T14:15:53.832Z]       + tags_all                             = {
+[2026-11-03T14:15:53.832Z]           + "Environment" = "dev"
+[2026-11-03T14:15:53.832Z]           + "ManagedBy"   = "Terraform"
+[2026-11-03T14:15:53.832Z]           + "Name"        = "jenkins-terraform-cicd-dev-app"
+[2026-11-03T14:15:53.832Z]           + "Owner"       = "Kartik Saste"
+[2026-11-03T14:15:53.832Z]           + "Pipeline"    = "Jenkins"
+[2026-11-03T14:15:53.832Z]           + "Project"     = "jenkins-terraform-cicd"
+[2026-11-03T14:15:53.832Z]         }
+[2026-11-03T14:15:53.832Z]       + tenancy                              = (known after apply)
+[2026-11-03T14:15:53.832Z]       + user_data                            = "37e23b9b47023ebe15aed1af8f14dd025fe01e5e"
+[2026-11-03T14:15:53.832Z]       + user_data_base64                     = (known after apply)
+[2026-11-03T14:15:53.832Z]       + user_data_replace_on_change          = true
+[2026-11-03T14:15:53.832Z]       + vpc_security_group_ids               = (known after apply)
+[2026-11-03T14:15:53.832Z] 
+[2026-11-03T14:15:53.833Z]       + capacity_reservation_specification (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + cpu_options (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + ebs_block_device (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + enclave_options (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + ephemeral_block_device (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + instance_market_options (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + maintenance_options (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + metadata_options {
+[2026-11-03T14:15:53.833Z]           + http_endpoint               = "enabled"
+[2026-11-03T14:15:53.833Z]           + http_protocol_ipv6          = "disabled"
+[2026-11-03T14:15:53.833Z]           + http_put_response_hop_limit = 2
+[2026-11-03T14:15:53.833Z]           + http_tokens                 = "required"
+[2026-11-03T14:15:53.833Z]           + instance_metadata_tags      = (known after apply)
+[2026-11-03T14:15:53.833Z]         }
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + network_interface (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + private_dns_name_options (known after apply)
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]       + root_block_device {
+[2026-11-03T14:15:53.833Z]           + delete_on_termination = true
+[2026-11-03T14:15:53.833Z]           + device_name           = (known after apply)
+[2026-11-03T14:15:53.833Z]           + encrypted             = true
+[2026-11-03T14:15:53.833Z]           + iops                  = (known after apply)
+[2026-11-03T14:15:53.833Z]           + kms_key_id            = (known after apply)
+[2026-11-03T14:15:53.833Z]           + tags_all              = (known after apply)
+[2026-11-03T14:15:53.833Z]           + throughput            = (known after apply)
+[2026-11-03T14:15:53.833Z]           + volume_id             = (known after apply)
+[2026-11-03T14:15:53.833Z]           + volume_size           = 8
+[2026-11-03T14:15:53.833Z]           + volume_type           = "gp3"
+[2026-11-03T14:15:53.833Z]         }
+[2026-11-03T14:15:53.833Z]     }
+[2026-11-03T14:15:53.833Z] 
+[2026-11-03T14:15:53.833Z]   # aws_security_group.app will be created
+[2026-11-03T14:15:53.833Z]   + resource "aws_security_group" "app" {
+[2026-11-03T14:15:53.833Z]       + arn                    = (known after apply)
+[2026-11-03T14:15:53.833Z]       + description            = "Allow SSH from admin CIDR and HTTP/Flask from anywhere"
+[2026-11-03T14:15:53.833Z]       + egress                 = [
+[2026-11-03T14:15:53.833Z]           + {
+[2026-11-03T14:15:53.833Z]               + cidr_blocks      = [
+[2026-11-03T14:15:53.833Z]                   + "0.0.0.0/0",
+[2026-11-03T14:15:53.833Z]                 ]
+[2026-11-03T14:15:53.833Z]               + description      = "All outbound traffic"
+[2026-11-03T14:15:53.833Z]               + from_port        = 0
+[2026-11-03T14:15:53.833Z]               + ipv6_cidr_blocks = []
+[2026-11-03T14:15:53.833Z]               + prefix_list_ids  = []
+[2026-11-03T14:15:53.833Z]               + protocol         = "-1"
+[2026-11-03T14:15:53.833Z]               + security_groups  = []
+[2026-11-03T14:15:53.833Z]               + self             = false
+[2026-11-03T14:15:53.833Z]               + to_port          = 0
+[2026-11-03T14:15:53.833Z]             },
+[2026-11-03T14:15:53.833Z]         ]
+[2026-11-03T14:15:53.833Z]       + id                     = (known after apply)
+[2026-11-03T14:15:53.833Z]       + ingress                = [
+[2026-11-03T14:15:53.833Z]           + {
+[2026-11-03T14:15:53.833Z]               + cidr_blocks      = [
+[2026-11-03T14:15:53.833Z]                   + "0.0.0.0/0",
+[2026-11-03T14:15:53.833Z]                 ]
+[2026-11-03T14:15:53.833Z]               + description      = "Flask app port"
+[2026-11-03T14:15:53.833Z]               + from_port        = 5000
+[2026-11-03T14:15:53.833Z]               + ipv6_cidr_blocks = []
+[2026-11-03T14:15:53.833Z]               + prefix_list_ids  = []
+[2026-11-03T14:15:53.833Z]               + protocol         = "tcp"
+[2026-11-03T14:15:53.833Z]               + security_groups  = []
+[2026-11-03T14:15:53.833Z]               + self             = false
+[2026-11-03T14:15:53.833Z]               + to_port          = 5000
+[2026-11-03T14:15:53.833Z]             },
+[2026-11-03T14:15:53.833Z]           + {
+[2026-11-03T14:15:53.833Z]               + cidr_blocks      = [
+[2026-11-03T14:15:53.833Z]                   + "0.0.0.0/0",
+[2026-11-03T14:15:53.833Z]                 ]
+[2026-11-03T14:15:53.833Z]               + description      = "HTTP"
+[2026-11-03T14:15:53.833Z]               + from_port        = 80
+[2026-11-03T14:15:53.833Z]               + ipv6_cidr_blocks = []
+[2026-11-03T14:15:53.833Z]               + prefix_list_ids  = []
+[2026-11-03T14:15:53.833Z]               + protocol         = "tcp"
+[2026-11-03T14:15:53.833Z]               + security_groups  = []
+[2026-11-03T14:15:53.833Z]               + self             = false
+[2026-11-03T14:15:53.833Z]               + to_port          = 80
+[2026-11-03T14:15:53.833Z]             },
+[2026-11-03T14:15:53.833Z]           + {
+[2026-11-03T14:15:53.833Z]               + cidr_blocks      = [
+[2026-11-03T14:15:53.833Z]                   + "100.22.120.45/32",
+[2026-11-03T14:15:53.833Z]                 ]
+[2026-11-03T14:15:53.833Z]               + description      = "SSH"
+[2026-11-03T14:15:53.833Z]               + from_port        = 22
+[2026-11-03T14:15:53.833Z]               + ipv6_cidr_blocks = []
+[2026-11-03T14:15:53.833Z]               + prefix_list_ids  = []
+[2026-11-03T14:15:53.833Z]               + protocol         = "tcp"
+[2026-11-03T14:15:53.833Z]               + security_groups  = []
+[2026-11-03T14:15:53.833Z]               + self             = false
+[2026-11-03T14:15:53.833Z]               + to_port          = 22
+[2026-11-03T14:15:53.833Z]             },
+[2026-11-03T14:15:53.833Z]         ]
+[2026-11-03T14:15:53.833Z]       + name                   = "jenkins-terraform-cicd-dev-sg"
+[2026-11-03T14:15:53.834Z]       + name_prefix            = (known after apply)
+[2026-11-03T14:15:53.834Z]       + owner_id               = (known after apply)
+[2026-11-03T14:15:53.834Z]       + revoke_rules_on_delete = false
+[2026-11-03T14:15:53.834Z]       + tags                   = {
+[2026-11-03T14:15:53.834Z]           + "Name" = "jenkins-terraform-cicd-dev-sg"
+[2026-11-03T14:15:53.834Z]         }
+[2026-11-03T14:15:53.834Z]       + tags_all               = {
+[2026-11-03T14:15:53.834Z]           + "Environment" = "dev"
+[2026-11-03T14:15:53.834Z]           + "ManagedBy"   = "Terraform"
+[2026-11-03T14:15:53.834Z]           + "Name"        = "jenkins-terraform-cicd-dev-sg"
+[2026-11-03T14:15:53.834Z]           + "Owner"       = "Kartik Saste"
+[2026-11-03T14:15:53.834Z]           + "Pipeline"    = "Jenkins"
+[2026-11-03T14:15:53.834Z]           + "Project"     = "jenkins-terraform-cicd"
+[2026-11-03T14:15:53.834Z]         }
+[2026-11-03T14:15:53.834Z]       + vpc_id                 = "vpc-0dee03f3a5eafb8f2"
+[2026-11-03T14:15:53.834Z]     }
+[2026-11-03T14:15:53.834Z] 
+[2026-11-03T14:15:53.834Z] Plan: 2 to add, 0 to change, 0 to destroy.
+[2026-11-03T14:15:53.834Z] 
+[2026-11-03T14:15:53.834Z] Changes to Outputs:
+[2026-11-03T14:15:53.834Z]   + ami_id            = "ami-00531e78dd10fb3be"
+[2026-11-03T14:15:53.834Z]   + app_url           = (known after apply)
+[2026-11-03T14:15:53.834Z]   + instance_id       = (known after apply)
+[2026-11-03T14:15:53.834Z]   + public_dns        = (known after apply)
+[2026-11-03T14:15:53.834Z]   + public_ip         = (known after apply)
+[2026-11-03T14:15:53.834Z]   + security_group_id = (known after apply)
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+Post stage
+[Pipeline] archiveArtifacts
+[2026-11-03T14:15:55.795Z] Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Apply)
+Stage "Terraform Apply" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Verify EC2 Deployment)
+Stage "Verify EC2 Deployment" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Destroy)
+Stage "Terraform Destroy" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] archiveArtifacts
+[2026-11-03T14:15:56.129Z] Archiving artifacts
+[2026-11-03T14:15:56.133Z] Recording fingerprints
+[Pipeline] echo
+[2026-11-03T14:15:56.169Z] SUCCESS: jenkins-terraform-cicd #1 - lint, tests, Docker build and Terraform checks all passed.
+[Pipeline] sh
+[2026-11-03T14:15:56.441Z] + docker rm -f smoke-1
+[Pipeline] cleanWs
+[2026-11-03T14:15:56.459Z] [WS-CLEANUP] Deleting project workspace...
+[2026-11-03T14:15:56.461Z] [WS-CLEANUP] Deferred wipeout is used...
+[2026-11-03T14:15:56.471Z] [WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

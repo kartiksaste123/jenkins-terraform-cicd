@@ -1,0 +1,17 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ terraform -chdir=terraform show -json tfplan | python3 -c "import json,sys; p=json.load(sys.stdin); [print(f'{r[\"change\"][\"actions\"][0]:>7}  {r[\"address\"]}') for r in p['resource_changes']]"; terraform -chdir=terraform show -no-color tfplan | grep -E 'instance_type|http_tokens|encrypted|volume_type|cidr_blocks|Plan:' 
+ create  aws_instance.app
+ create  aws_security_group.app
+      + instance_type                        = "t3.micro"
+          + http_tokens                 = "required"
+          + encrypted             = true
+          + volume_type           = "gp3"
+              + cidr_blocks      = [
+              + ipv6_cidr_blocks = []
+              + cidr_blocks      = [
+              + ipv6_cidr_blocks = []
+              + cidr_blocks      = [
+              + ipv6_cidr_blocks = []
+              + cidr_blocks      = [
+              + ipv6_cidr_blocks = []
+Plan: 2 to add, 0 to change, 0 to destroy.
+

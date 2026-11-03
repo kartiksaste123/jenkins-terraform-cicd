@@ -1,0 +1,37 @@
+# Jenkins build #5 - pipeline waits for the app on the EC2 public IP and checks /health
+# Source: http://localhost:8081/job/jenkins-terraform-cicd/5/console
+
+===== Stage: Verify EC2 Deployment =====
+[19:56:53 IST] Running in /var/jenkins_home/workspace/jenkins-terraform-cicd/terraform
+[19:56:53 IST] + python3 -c import json;print(json.load(open('outputs.json'))['app_url']['value'])
+[19:56:53 IST] + APP_URL=http://65.0.100.95/
+[19:56:53 IST] + echo Waiting for the app at http://65.0.100.95/ (EC2 user_data installs Docker and builds the image)...
+[19:56:53 IST] Waiting for the app at http://65.0.100.95/ (EC2 user_data installs Docker and builds the image)...
+[19:56:53 IST] + seq 1 40
+[19:56:53 IST] + curl -fsS -m 5 http://65.0.100.95/health
+[19:56:54 IST] curl: (22) The requested URL returned error: 502
+[19:56:54 IST] + sleep 15
+[19:57:12 IST] + curl -fsS -m 5 http://65.0.100.95/health
+[19:57:12 IST] curl: (22) The requested URL returned error: 502
+[19:57:12 IST] + sleep 15
+[19:57:24 IST] + curl -fsS -m 5 http://65.0.100.95/health
+[19:57:24 IST] curl: (22) The requested URL returned error: 502
+[19:57:24 IST] + sleep 15
+[19:57:42 IST] + curl -fsS -m 5 http://65.0.100.95/health
+[19:57:42 IST] curl: (22) The requested URL returned error: 502
+[19:57:42 IST] + sleep 15
+[19:57:57 IST] + curl -fsS -m 5 http://65.0.100.95/health
+[19:57:57 IST] curl: (22) The requested URL returned error: 502
+[19:57:57 IST] + sleep 15
+[19:58:12 IST] + curl -fsS -m 5 http://65.0.100.95/health
+[19:58:12 IST] {"status":"ok","time":"2026-11-03T14:28:10.225010+00:00"}
+[19:58:12 IST] + echo
+[19:58:12 IST] 
+[19:58:12 IST] + echo EC2 app is healthy after attempt 6
+[19:58:12 IST] EC2 app is healthy after attempt 6
+[19:58:12 IST] + curl -fsS -m 5 http://65.0.100.95/api/info
+[19:58:12 IST] {"app":"student-task-tracker","author":"Kartik Saste","build":"ec2","hostname":"f9673c1f00aa","version":"1.0.0"}
+[19:58:12 IST] + echo
+[19:58:12 IST] 
+[19:58:12 IST] + exit 0
+

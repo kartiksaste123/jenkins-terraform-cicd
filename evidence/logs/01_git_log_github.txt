@@ -1,0 +1,12 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ git remote -v; git log --oneline --decorate -n 10; gh repo view kartiksaste123/jenkins-terraform-cicd --json url,visibility,defaultBranchRef --jq '"Repo: "+.url+"  ("+.visibility+", default branch "+.defaultBranchRef.name+")"'
+origin	https://github.com/kartiksaste123/jenkins-terraform-cicd.git (fetch)
+origin	https://github.com/kartiksaste123/jenkins-terraform-cicd.git (push)
+1be03c2 (HEAD -> main, origin/main) Add docker buildx to Jenkins image; list Terraform state after apply; add helper scripts
+960d2a0 Use default Docker bridge for Jenkins and smoke-test the container by IP
+00ead23 Add Terraform outputs (instance id, public IP/DNS, app URL)
+c1f9e5e Add Jenkins controller image, plugins and JCasC job definition
+a0b333d Add declarative Jenkinsfile: lint, test, Docker build, smoke test, Terraform plan/apply/destroy
+8c1efbe Add Terraform configuration for AWS EC2 (ap-south-1, t3.micro, IMDSv2, encrypted gp3)
+ae7b869 Add Student Task Tracker Flask app with pytest tests and Dockerfile
+Repo: https://github.com/kartiksaste123/jenkins-terraform-cicd  (PUBLIC, default branch main)
+

@@ -1,0 +1,8 @@
+kartik@cloud-lab:~/jenkins-terraform-cicd$ .venv/bin/flake8 --count && echo 'flake8: 0 issues' && .venv/bin/pytest --cov=app --cov-report=term-missing
+./scripts/render_terminal_png.py:29:25: E741 ambiguous variable name 'l'
+./scripts/render_terminal_png.py:33:121: E501 line too long (122 > 120 characters)
+./scripts/render_terminal_png.py:35:9: E741 ambiguous variable name 'l'
+./scripts/render_terminal_png.py:39:47: E741 ambiguous variable name 'l'
+./scripts/render_terminal_png.py:51:9: E741 ambiguous variable name 'l'
+5
+
