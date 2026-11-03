@@ -16,8 +16,12 @@ OUT = "evidence/screenshots"
 PW = re.search(r"password: (\S+)", open(".secrets/jenkins_admin.txt").read()).group(1)
 AK = open(".secrets/jcasc/aws_access_key_id").read().strip()
 MASK_JS = """(ak) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  let n; while ((n = w.nextNode())) { if (n.nodeValue.includes(ak) || /AKIA[A-Z0-9]{16}/.test(n.nodeValue))
-  n.nodeValue = n.nodeValue.split(ak).join('AKIA****************').replace(/AKIA[A-Z0-9]{16}/g, 'AKIA****************'); } }"""
+  let n;
+  while ((n = w.nextNode())) {
+   if (n.nodeValue.includes(ak) || /AKIA[A-Z0-9]{16}/.test(n.nodeValue))
+    n.nodeValue = n.nodeValue.split(ak).join('AKIA****')
+      .replace(/AKIA[A-Z0-9]{16}/g, 'AKIA****');
+  } }"""
 
 build = sys.argv[1]
 wanted = [a.split(":") for a in sys.argv[2:]]

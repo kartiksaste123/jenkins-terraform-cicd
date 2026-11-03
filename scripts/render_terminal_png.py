@@ -26,17 +26,19 @@ def clean(line):
 
 def render(path):
     name = os.path.splitext(os.path.basename(path))[0]
-    raw = [clean(l) for l in open(path, encoding="utf-8", errors="replace")]
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        raw = [clean(ln) for ln in fh]
     while raw and not raw[-1].strip():
         raw.pop()
     if len(raw) > MAX_LINES:  # long build logs: keep head and tail
-        raw = raw[:25] + [f"... ({len(raw) - 60} lines omitted, full output in evidence/logs/{name}.txt) ..."] + raw[-35:]
+        note = f"... ({len(raw) - 60} lines omitted, full output in evidence/logs/{name}.txt) ..."
+        raw = raw[:25] + [note] + raw[-35:]
     lines = []
-    for l in raw:
-        lines += textwrap.wrap(l, WRAP, replace_whitespace=False, drop_whitespace=False) or [""]
+    for ln in raw:
+        lines += textwrap.wrap(ln, WRAP, replace_whitespace=False, drop_whitespace=False) or [""]
     cw = font.getbbox("M")[2]
     lh = SIZE + 6
-    width = max(900, min(WRAP, max(len(l) for l in lines)) * cw + 2 * PAD)
+    width = max(900, min(WRAP, max(len(ln) for ln in lines)) * cw + 2 * PAD)
     title_h = 34
     height = title_h + 2 * PAD + lh * len(lines)
     img = Image.new("RGB", (width, height), BG)
@@ -48,12 +50,12 @@ def render(path):
     d.text(((width - d.textlength(title, font=sans)) / 2, 9), title, fill=(200, 200, 205), font=sans)
     y = title_h + PAD
     prompt = "kartik@cloud-lab:~/jenkins-terraform-cicd$"
-    for l in lines:
-        if l.startswith(prompt):
+    for ln in lines:
+        if ln.startswith(prompt):
             d.text((PAD, y), prompt, fill=PROMPT, font=fontb)
-            d.text((PAD + len(prompt) * cw, y), l[len(prompt):], fill=CMD, font=fontb)
+            d.text((PAD + len(prompt) * cw, y), ln[len(prompt):], fill=CMD, font=fontb)
         else:
-            d.text((PAD, y), l, fill=FG, font=font)
+            d.text((PAD, y), ln, fill=FG, font=font)
         y += lh
     out = f"{OUT}/{name}.png"
     img.save(out, optimize=True)
