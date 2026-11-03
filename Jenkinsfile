@@ -202,6 +202,7 @@ pipeline {
                         sh '''#!/bin/bash
                             set -eo pipefail
                             terraform apply -input=false -no-color -auto-approve tfplan | tee apply_output.txt
+                            terraform state list
                             terraform output -no-color | tee outputs.txt
                             terraform output -json > outputs.json
                         '''
