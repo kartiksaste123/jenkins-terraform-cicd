@@ -44,7 +44,7 @@ SHOTS = {
 
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--no-sandbox"])
-    ctx = b.new_context(viewport={"width": 1440, "height": 900})
+    ctx = b.new_context(viewport={"width": 1440, "height": 900}, timezone_id="Asia/Kolkata")
     page = ctx.new_page()
     page.goto(f"{BASE}/login")
     page.fill("input[name=j_username]", "kartik")

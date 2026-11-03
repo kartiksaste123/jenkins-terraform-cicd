@@ -1,0 +1,19 @@
+flowchart TB
+    subgraph SRC["1. Source"]
+      direction LR
+      DEV["Kartik<br/>git push"] --> GH["GitHub<br/>kartiksaste123/jenkins-terraform-cicd"] -- "SCM polling H/5 * * * *" --> JK["Jenkins in Docker :8081<br/>Pipeline script from SCM"]
+    end
+    subgraph CI["2. CI stages - build and test"]
+      direction LR
+      C1["Checkout"] --> C2["Python venv"] --> C3["flake8 lint"] --> C4["pytest<br/>JUnit + coverage"] --> C5["docker build<br/>tag BUILD_NUMBER"] --> C6["Smoke test<br/>GET /health"]
+    end
+    subgraph IAC["3. IaC stages - Terraform (AWS keys from Jenkins credential aws-terraform-ci)"]
+      direction LR
+      T1["init"] --> T2["fmt -check"] --> T3["validate"] --> T4["plan -out tfplan"] --> T5{"APPLY=true?"} -- yes --> T6["apply tfplan"] --> T7["verify app URL"]
+      T5 -- "no" --> T8["stop after plan<br/>(DESTROY=true runs destroy)"]
+    end
+    subgraph AWS["4. AWS ap-south-1 (default VPC)"]
+      direction LR
+      SG["Security group<br/>22 from admin IP, 80/5000 open"] --> EC2["EC2 t3.micro<br/>Amazon Linux 2023<br/>IMDSv2, encrypted gp3"] -- "user_data: git clone + docker run -p 80:5000" --> APP["Student Task Tracker<br/>http://public-ip/"]
+    end
+    SRC --> CI --> IAC --> AWS
