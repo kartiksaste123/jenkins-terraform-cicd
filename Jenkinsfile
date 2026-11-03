@@ -262,7 +262,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/**, terraform/*_output.txt, terraform/outputs.*, terraform/tfplan.txt',
+            archiveArtifacts artifacts: 'reports/*.xml, terraform/*_output.txt, terraform/outputs.txt, terraform/outputs.json, terraform/tfplan.txt',
                              allowEmptyArchive: true, fingerprint: true
         }
         success {
