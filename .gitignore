@@ -25,5 +25,6 @@ override.tf.json
 terraform.rc
 # Jenkins-generated terraform outputs
 terraform/*_output.txt
-terraform/outputs.*
+terraform/outputs.txt
+terraform/outputs.json
 terraform/tfplan.txt
