@@ -24,7 +24,6 @@ pipeline {
     environment {
         APP_NAME           = 'student-task-tracker'
         IMAGE_TAG          = "${env.BUILD_NUMBER}"
-        DOCKER_NETWORK     = 'ci-net'
         TF_DIR             = 'terraform'
         TF_IN_AUTOMATION   = 'true'
         TF_INPUT           = '0'
@@ -99,15 +98,18 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f smoke-${BUILD_NUMBER} 2>/dev/null || true
-                    docker run -d --name smoke-${BUILD_NUMBER} --network ${DOCKER_NETWORK} ${APP_NAME}:${IMAGE_TAG}
+                    docker run -d --name smoke-${BUILD_NUMBER} ${APP_NAME}:${IMAGE_TAG}
+                    # Jenkins and the app container share the default Docker bridge, so curl the container IP
+                    SMOKE_IP=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' smoke-${BUILD_NUMBER})
+                    echo "Smoke-test container IP: ${SMOKE_IP}"
                     for i in $(seq 1 20); do
-                        if curl -fsS http://smoke-${BUILD_NUMBER}:5000/health; then
+                        if curl -fsS http://${SMOKE_IP}:5000/health; then
                             echo; echo "Smoke test passed on attempt $i"; break
                         fi
                         [ "$i" -eq 20 ] && { docker logs smoke-${BUILD_NUMBER}; exit 1; }
                         sleep 1
                     done
-                    curl -fsS http://smoke-${BUILD_NUMBER}:5000/api/info; echo
+                    curl -fsS http://${SMOKE_IP}:5000/api/info; echo
                 '''
             }
             post {
